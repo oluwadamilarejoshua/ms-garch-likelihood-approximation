@@ -1,0 +1,4372 @@
+% ============================================================
+%  MS-GARCH Full Model Parameter Reference
+%  All 220 estimated models: parameter tables and equations
+% ============================================================
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[top=2cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{array, booktabs, longtable}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{0.6em}{}
+\usepackage[authoryear,round]{natbib}
+\bibliographystyle{apalike}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Ogundairo \& Ojo}}
+\fancyhead[R]{\small\textit{MS-GARCH Full Model Reference}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+\begin{center}
+{\LARGE \bfseries MS-GARCH Likelihood Approximation Study}\\[0.6em]
+{\large \bfseries Complete Model Parameter Reference}\\[1em]
+{\large Joshua Ogundairo\textsuperscript{a} \quad and \quad Oluwadare O. Ojo\textsuperscript{a}}\\[0.4em]
+{\small \textsuperscript{a}Department of Statistics, Federal University of Technology, Akure (FUTA), Nigeria}\\[0.2em]
+{\small \href{mailto:ogundairosta154470@futa.edu.ng}{ogundairosta154470@futa.edu.ng} \quad \href{mailto:ojooo@futa.edu.ng}{ojooo@futa.edu.ng}}\\[0.6em]
+{\small Companion document to: \textit{Impact of Likelihood Approximation Choices on the Performance of MS-GARCH Models}}\\[0.4em]
+{\small June 2026}
+\end{center}
+
+\vspace{0.5em}\hrule\vspace{1em}
+
+\noindent\textbf{About this document.}
+This file contains the complete estimated parameter sets for all 220 MS-GARCH(1,1) model runs
+reported in the companion article. Models are organized by market archetype (Section~1--5),
+then by asset, and within each asset by specification (Baseline and Exogenous) and approximation
+method (Gray's collapsing, Plug-in, Gaussian Quadrature, Particle Filter).
+Parameter tables present the twelve-element vector
+$\Psi = \{c_1, c_2, \gamma_1, \gamma_2, \omega_1, \alpha_1, \beta_1, \omega_2, \alpha_2, \beta_2, p_{11}, p_{22}\}$
+alongside the log-likelihood (LogLik) and convergence status (Conv.).
+Equation blocks then render the fitted model explicitly for each method.
+Dashes (--) in the $\gamma$ columns indicate the baseline (internal-dynamics-only) specification
+where $\gamma_1 = \gamma_2 = 0$ by construction.
+
+\tableofcontents
+\newpage
+
+\section{Equity Market}
+\noindent Pivot (exogenous conditioning variable): \textbf{\texttt{GSPC}}.
+
+\subsection{Asset: \texttt{FTSE}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{FTSE --- Baseline Specification}
+\label{tab:ftse_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0720 & -0.0001 & -- & -- & 0.2687 & 0.3661 & 0.6337 & 0.0001 & 0.0001 & 0.0001 & 0.7607 & 0.4448 & Yes & -1014.99 \\
+Plug-in & -0.0003 & 0.0355 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1062 & 0.2989 & 0.6954 & 0.5689 & 0.7553 & Yes & -753.01 \\
+Quadrature & 0.0517 & -0.0001 & -- & -- & 0.2244 & 0.3836 & 0.6159 & 0.0001 & 0.0001 & 0.0001 & 0.7258 & 0.4785 & Yes & -1044.07 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3030.64 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0720 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2687 + 0.3661\, y_{t-1}^2 + 0.6337\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7607 & 0.2393 \\ 0.5552 & 0.4448 \end{pmatrix}
+\end{equation}
+LogLik $= -1014.99$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0003 \\
+\mu_{2} &= 0.0355
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1062 + 0.2989\, y_{t-1}^2 + 0.6954\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5689 & 0.4311 \\ 0.2447 & 0.7553 \end{pmatrix}
+\end{equation}
+LogLik $= -753.01$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0517 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2244 + 0.3836\, y_{t-1}^2 + 0.6159\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7258 & 0.2742 \\ 0.5215 & 0.4785 \end{pmatrix}
+\end{equation}
+LogLik $= -1044.07$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3030.64$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{FTSE --- Exogenous Specification}
+\label{tab:ftse_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0213 & -0.0001 & 0.2146 & -0.0002 & 0.2535 & 0.3391 & 0.6609 & 0.0001 & 0.0001 & 0.0001 & 0.7389 & 0.4627 & Yes & -985.96 \\
+Plug-in & -0.0001 & 0.0219 & 0.0006 & 0.1418 & 0.0001 & 0.0001 & 0.0001 & 0.1021 & 0.2768 & 0.7229 & 0.4883 & 0.7502 & Yes & -726.36 \\
+Quadrature & 0.0917 & -0.0001 & 0.1461 & -0.0000 & 0.1861 & 0.3089 & 0.6911 & 0.0001 & 0.0001 & 0.0001 & 0.7506 & 0.4853 & Yes & -1012.80 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -3006.88 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0213 + 0.2146\, x_t \\
+\mu_{2} &= -0.0001 -0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2535 + 0.3391\, y_{t-1}^2 + 0.6609\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7389 & 0.2611 \\ 0.5373 & 0.4627 \end{pmatrix}
+\end{equation}
+LogLik $= -985.96$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0001 + 0.0006\, x_t \\
+\mu_{2} &= 0.0219 + 0.1418\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1021 + 0.2768\, y_{t-1}^2 + 0.7229\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4883 & 0.5117 \\ 0.2498 & 0.7502 \end{pmatrix}
+\end{equation}
+LogLik $= -726.36$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0917 + 0.1461\, x_t \\
+\mu_{2} &= -0.0001 -0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1861 + 0.3089\, y_{t-1}^2 + 0.6911\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7506 & 0.2494 \\ 0.5147 & 0.4853 \end{pmatrix}
+\end{equation}
+LogLik $= -1012.80$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3006.88$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{N225}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{N225 --- Baseline Specification}
+\label{tab:n225_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0588 & 0.0001 & -- & -- & 0.5097 & 0.1881 & 0.8032 & 0.0001 & 0.0001 & 0.0001 & 0.7047 & 0.4934 & Yes & -1523.48 \\
+Plug-in & -0.0002 & 0.0666 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1062 & 0.1389 & 0.8444 & 0.5296 & 0.7529 & Yes & -1183.10 \\
+Quadrature & 0.1001 & 0.0003 & -- & -- & 0.6615 & 0.2244 & 0.7755 & 0.0001 & 0.0001 & 0.0001 & 0.6441 & 0.6348 & Yes & -1617.53 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3946.35 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0588 \\
+\mu_{2} &= 0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5097 + 0.1881\, y_{t-1}^2 + 0.8032\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7047 & 0.2953 \\ 0.5066 & 0.4934 \end{pmatrix}
+\end{equation}
+LogLik $= -1523.48$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0002 \\
+\mu_{2} &= 0.0666
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1062 + 0.1389\, y_{t-1}^2 + 0.8444\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5296 & 0.4704 \\ 0.2471 & 0.7529 \end{pmatrix}
+\end{equation}
+LogLik $= -1183.10$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.1001 \\
+\mu_{2} &= 0.0003
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.6615 + 0.2244\, y_{t-1}^2 + 0.7755\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.6441 & 0.3559 \\ 0.3652 & 0.6348 \end{pmatrix}
+\end{equation}
+LogLik $= -1617.53$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3946.35$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{N225 --- Exogenous Specification}
+\label{tab:n225_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0379 & -0.0429 & 0.4057 & 0.2095 & 0.7990 & 0.0975 & 0.9000 & 0.0253 & 0.1172 & 0.0074 & 0.2865 & 0.3852 & No & -3164.01 \\
+Plug-in & 0.0257 & -0.0001 & 0.6279 & -0.0002 & 0.1280 & 0.1767 & 0.7711 & 0.0001 & 0.0001 & 0.0001 & 0.7530 & 0.5292 & Yes & -958.26 \\
+Quadrature & 0.0163 & -0.0003 & 0.6281 & 0.0001 & 0.2268 & 0.1732 & 0.8266 & 0.0001 & 0.0001 & 0.0001 & 0.7203 & 0.4536 & Yes & -1282.22 \\
+Particle Filter & -0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3844.16 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0379 + 0.4057\, x_t \\
+\mu_{2} &= -0.0429 + 0.2095\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.7990 + 0.0975\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0253 + 0.1172\, y_{t-1}^2 + 0.0074\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.2865 & 0.7135 \\ 0.6148 & 0.3852 \end{pmatrix}
+\end{equation}
+LogLik $= -3164.01$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0257 + 0.6279\, x_t \\
+\mu_{2} &= -0.0001 -0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1280 + 0.1767\, y_{t-1}^2 + 0.7711\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7530 & 0.2470 \\ 0.4708 & 0.5292 \end{pmatrix}
+\end{equation}
+LogLik $= -958.26$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0163 + 0.6281\, x_t \\
+\mu_{2} &= -0.0003 + 0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2268 + 0.1732\, y_{t-1}^2 + 0.8266\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7203 & 0.2797 \\ 0.5464 & 0.4536 \end{pmatrix}
+\end{equation}
+LogLik $= -1282.22$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 + 0.1000\, x_t \\
+\mu_{2} &= -0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3844.16$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{IXIC}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{IXIC --- Baseline Specification}
+\label{tab:ixic_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.4857 & 0.1456 & -- & -- & 0.6551 & 0.0766 & 0.9000 & 0.0001 & 0.0001 & 0.7559 & 0.8691 & 0.9569 & Yes & -4070.86 \\
+Plug-in & 0.0001 & 0.1090 & -- & -- & 0.0001 & 0.0001 & 0.0004 & 0.1851 & 0.2735 & 0.7206 & 0.5118 & 0.7568 & No & -1647.97 \\
+Quadrature & 0.0232 & 0.1347 & -- & -- & 0.2404 & 0.1729 & 0.8240 & 0.0135 & 0.0737 & 0.6214 & 0.8661 & 0.8884 & No & -4186.05 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -4274.18 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.4857 \\
+\mu_{2} &= 0.1456
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.6551 + 0.0766\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.7559\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8691 & 0.1309 \\ 0.0431 & 0.9569 \end{pmatrix}
+\end{equation}
+LogLik $= -4070.86$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0001 \\
+\mu_{2} &= 0.1090
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0004\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1851 + 0.2735\, y_{t-1}^2 + 0.7206\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5118 & 0.4882 \\ 0.2432 & 0.7568 \end{pmatrix}
+\end{equation}
+LogLik $= -1647.97$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0232 \\
+\mu_{2} &= 0.1347
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2404 + 0.1729\, y_{t-1}^2 + 0.8240\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0135 + 0.0737\, y_{t-1}^2 + 0.6214\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8661 & 0.1339 \\ 0.1116 & 0.8884 \end{pmatrix}
+\end{equation}
+LogLik $= -4186.05$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -4274.18$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{IXIC --- Exogenous Specification}
+\label{tab:ixic_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0509 & 0.1285 & -0.0714 & -0.0721 & 0.2420 & 0.1588 & 0.8411 & 0.0001 & 0.0949 & 0.6968 & 0.8581 & 0.8672 & No & -4155.59 \\
+Plug-in & 0.0001 & 0.0711 & -0.0013 & -0.1073 & 0.0001 & 0.0001 & 0.0004 & 0.1963 & 0.2551 & 0.7449 & 0.4497 & 0.7301 & Yes & -1647.60 \\
+Quadrature & 0.1181 & 0.0718 & -0.2952 & -0.0036 & 0.5152 & 0.2517 & 0.7483 & 0.0871 & 0.1286 & 0.3366 & 0.8120 & 0.8530 & Yes & -4192.55 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -4279.14 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0509 -0.0714\, x_t \\
+\mu_{2} &= 0.1285 -0.0721\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2420 + 0.1588\, y_{t-1}^2 + 0.8411\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0949\, y_{t-1}^2 + 0.6968\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8581 & 0.1419 \\ 0.1328 & 0.8672 \end{pmatrix}
+\end{equation}
+LogLik $= -4155.59$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0001 -0.0013\, x_t \\
+\mu_{2} &= 0.0711 -0.1073\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0004\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1963 + 0.2551\, y_{t-1}^2 + 0.7449\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4497 & 0.5503 \\ 0.2699 & 0.7301 \end{pmatrix}
+\end{equation}
+LogLik $= -1647.60$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.1181 -0.2952\, x_t \\
+\mu_{2} &= 0.0718 -0.0036\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5152 + 0.2517\, y_{t-1}^2 + 0.7483\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0871 + 0.1286\, y_{t-1}^2 + 0.3366\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8120 & 0.1880 \\ 0.1470 & 0.8530 \end{pmatrix}
+\end{equation}
+LogLik $= -4192.55$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -4279.14$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{EEM}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{EEM --- Baseline Specification}
+\label{tab:eem_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0113 & 0.0050 & -- & -- & 0.7411 & 0.1723 & 0.8276 & 0.0001 & 0.0001 & 0.1966 & 0.6085 & 0.6493 & No & -3672.50 \\
+Plug-in & 0.0353 & -0.0000 & -- & -- & 0.0657 & 0.1191 & 0.8789 & 0.0001 & 0.0001 & 0.0001 & 0.7691 & 0.5141 & Yes & -1451.69 \\
+Quadrature & 0.0501 & 0.0001 & -- & -- & 0.3670 & 0.1404 & 0.8589 & 0.0001 & 0.0001 & 0.0001 & 0.7578 & 0.4318 & Yes & -1804.79 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3993.87 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0113 \\
+\mu_{2} &= 0.0050
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.7411 + 0.1723\, y_{t-1}^2 + 0.8276\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.1966\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.6085 & 0.3915 \\ 0.3507 & 0.6493 \end{pmatrix}
+\end{equation}
+LogLik $= -3672.50$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0353 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0657 + 0.1191\, y_{t-1}^2 + 0.8789\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7691 & 0.2309 \\ 0.4859 & 0.5141 \end{pmatrix}
+\end{equation}
+LogLik $= -1451.69$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0501 \\
+\mu_{2} &= 0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3670 + 0.1404\, y_{t-1}^2 + 0.8589\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7578 & 0.2422 \\ 0.5682 & 0.4318 \end{pmatrix}
+\end{equation}
+LogLik $= -1804.79$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3993.87$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{EEM --- Exogenous Specification}
+\label{tab:eem_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0112 & 0.0002 & -0.0946 & 0.0003 & 0.4381 & 0.1825 & 0.8134 & 0.0001 & 0.0001 & 0.0001 & 0.7508 & 0.4697 & Yes & -1777.71 \\
+Plug-in & -0.0000 & 0.0350 & -0.0001 & -0.0749 & 0.0001 & 0.0001 & 0.0001 & 0.0643 & 0.1195 & 0.8796 & 0.5192 & 0.7688 & Yes & -1448.70 \\
+Quadrature & -0.1344 & 0.0001 & -0.2235 & -0.0039 & 0.8549 & 0.6400 & 0.3581 & 0.0001 & 0.1089 & 0.0001 & 0.5021 & 0.4844 & Yes & -2441.71 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -4011.86 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0112 -0.0946\, x_t \\
+\mu_{2} &= 0.0002 + 0.0003\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4381 + 0.1825\, y_{t-1}^2 + 0.8134\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7508 & 0.2492 \\ 0.5303 & 0.4697 \end{pmatrix}
+\end{equation}
+LogLik $= -1777.71$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0000 -0.0001\, x_t \\
+\mu_{2} &= 0.0350 -0.0749\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0643 + 0.1195\, y_{t-1}^2 + 0.8796\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5192 & 0.4808 \\ 0.2312 & 0.7688 \end{pmatrix}
+\end{equation}
+LogLik $= -1448.70$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.1344 -0.2235\, x_t \\
+\mu_{2} &= 0.0001 -0.0039\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8549 + 0.6400\, y_{t-1}^2 + 0.3581\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.1089\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5021 & 0.4979 \\ 0.5156 & 0.4844 \end{pmatrix}
+\end{equation}
+LogLik $= -2441.71$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -4011.86$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{VTV}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{VTV --- Baseline Specification}
+\label{tab:vtv_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0731 & -0.0000 & -- & -- & 0.2929 & 0.3022 & 0.6977 & 0.0001 & 0.0001 & 0.0001 & 0.7304 & 0.4624 & Yes & -1125.12 \\
+Plug-in & 0.0724 & -0.0000 & -- & -- & 0.1410 & 0.3708 & 0.6292 & 0.0001 & 0.0001 & 0.0004 & 0.7878 & 0.5170 & Yes & -835.80 \\
+Quadrature & 0.0630 & -0.0003 & -- & -- & 0.2014 & 0.3257 & 0.6729 & 0.0001 & 0.0001 & 0.0001 & 0.7729 & 0.4669 & Yes & -1161.13 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -3185.81 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0731 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2929 + 0.3022\, y_{t-1}^2 + 0.6977\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7304 & 0.2696 \\ 0.5376 & 0.4624 \end{pmatrix}
+\end{equation}
+LogLik $= -1125.12$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0724 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1410 + 0.3708\, y_{t-1}^2 + 0.6292\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0004\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7878 & 0.2122 \\ 0.4830 & 0.5170 \end{pmatrix}
+\end{equation}
+LogLik $= -835.80$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0630 \\
+\mu_{2} &= -0.0003
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2014 + 0.3257\, y_{t-1}^2 + 0.6729\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7729 & 0.2271 \\ 0.5331 & 0.4669 \end{pmatrix}
+\end{equation}
+LogLik $= -1161.13$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3185.81$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{VTV --- Exogenous Specification}
+\label{tab:vtv_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0869 & -0.0228 & -0.0107 & 0.0176 & 0.5310 & 0.2426 & 0.7556 & 0.0003 & 0.0064 & 0.0007 & 0.7299 & 0.6145 & Yes & -2103.47 \\
+Plug-in & -0.0001 & 0.0459 & -0.0005 & -0.0119 & 0.0001 & 0.0001 & 0.0005 & 0.1423 & 0.3254 & 0.6741 & 0.5232 & 0.7447 & Yes & -829.83 \\
+Quadrature & 0.0734 & -0.0000 & -0.0054 & -0.0003 & 0.2588 & 0.3504 & 0.6496 & 0.0001 & 0.0001 & 0.0001 & 0.7387 & 0.4614 & Yes & -1164.80 \\
+Particle Filter & -0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3197.38 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0869 -0.0107\, x_t \\
+\mu_{2} &= -0.0228 + 0.0176\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5310 + 0.2426\, y_{t-1}^2 + 0.7556\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0003 + 0.0064\, y_{t-1}^2 + 0.0007\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7299 & 0.2701 \\ 0.3855 & 0.6145 \end{pmatrix}
+\end{equation}
+LogLik $= -2103.47$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0001 -0.0005\, x_t \\
+\mu_{2} &= 0.0459 -0.0119\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0005\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1423 + 0.3254\, y_{t-1}^2 + 0.6741\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5232 & 0.4768 \\ 0.2553 & 0.7447 \end{pmatrix}
+\end{equation}
+LogLik $= -829.83$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0734 -0.0054\, x_t \\
+\mu_{2} &= -0.0000 -0.0003\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2588 + 0.3504\, y_{t-1}^2 + 0.6496\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7387 & 0.2613 \\ 0.5386 & 0.4614 \end{pmatrix}
+\end{equation}
+LogLik $= -1164.80$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3197.38$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{GSPC}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{GSPC --- Baseline Specification}
+\label{tab:gspc_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.1151 & -0.3419 & -- & -- & 0.0001 & 0.0787 & 0.7068 & 0.4046 & 0.2466 & 0.7534 & 0.9516 & 0.8362 & Yes & -3333.75 \\
+Plug-in & -0.0001 & 0.0739 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1646 & 0.3090 & 0.6910 & 0.5407 & 0.7831 & No & -1054.82 \\
+Quadrature & 0.0765 & -0.0002 & -- & -- & 0.3227 & 0.3107 & 0.6891 & 0.0001 & 0.0001 & 0.0001 & 0.7184 & 0.4804 & No & -1414.35 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3516.35 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.1151 \\
+\mu_{2} &= -0.3419
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0787\, y_{t-1}^2 + 0.7068\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4046 + 0.2466\, y_{t-1}^2 + 0.7534\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9516 & 0.0484 \\ 0.1638 & 0.8362 \end{pmatrix}
+\end{equation}
+LogLik $= -3333.75$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0001 \\
+\mu_{2} &= 0.0739
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1646 + 0.3090\, y_{t-1}^2 + 0.6910\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5407 & 0.4593 \\ 0.2169 & 0.7831 \end{pmatrix}
+\end{equation}
+LogLik $= -1054.82$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0765 \\
+\mu_{2} &= -0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3227 + 0.3107\, y_{t-1}^2 + 0.6891\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7184 & 0.2816 \\ 0.5196 & 0.4804 \end{pmatrix}
+\end{equation}
+LogLik $= -1414.35$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3516.35$; Converged: Yes.
+
+\clearpage
+\section{Bond Market}
+\noindent Pivot (exogenous conditioning variable): \textbf{\texttt{TNX}}.
+
+\subsection{Asset: \texttt{IEI}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{IEI --- Baseline Specification}
+\label{tab:iei_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0019 & 0.0006 & -- & -- & 0.0256 & 0.2409 & 0.7561 & 0.0001 & 0.0001 & 0.0001 & 0.7280 & 0.5054 & Yes & 1896.91 \\
+Plug-in & 0.0129 & -0.0000 & -- & -- & 0.0017 & 0.1031 & 0.8969 & 0.0001 & 0.0001 & 0.0001 & 0.7409 & 0.5922 & Yes & 2031.30 \\
+Quadrature & 0.0006 & 0.0001 & -- & -- & 0.0001 & 0.2845 & 0.5719 & 0.0001 & 0.0001 & 0.0001 & 0.7160 & 0.4853 & Yes & 1892.71 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1455.01 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0019 \\
+\mu_{2} &= 0.0006
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0256 + 0.2409\, y_{t-1}^2 + 0.7561\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7280 & 0.2720 \\ 0.4946 & 0.5054 \end{pmatrix}
+\end{equation}
+LogLik $= 1896.91$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0129 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0017 + 0.1031\, y_{t-1}^2 + 0.8969\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7409 & 0.2591 \\ 0.4078 & 0.5922 \end{pmatrix}
+\end{equation}
+LogLik $= 2031.30$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0006 \\
+\mu_{2} &= 0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.2845\, y_{t-1}^2 + 0.5719\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7160 & 0.2840 \\ 0.5147 & 0.4853 \end{pmatrix}
+\end{equation}
+LogLik $= 1892.71$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1455.01$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{IEI --- Exogenous Specification}
+\label{tab:iei_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0011 & -0.0000 & 0.0026 & -0.0000 & 0.0270 & 0.3322 & 0.6635 & 0.0001 & 0.0001 & 0.0001 & 0.7347 & 0.4642 & Yes & 1891.71 \\
+Plug-in & 0.0002 & -0.0085 & 0.0002 & -0.0026 & 0.0001 & 0.0001 & 0.0001 & 0.0086 & 0.2878 & 0.7122 & 0.5018 & 0.7526 & No & 1994.27 \\
+Quadrature & 0.0005 & 0.0001 & 0.0022 & 0.0001 & 0.0001 & 0.2840 & 0.5712 & 0.0001 & 0.0001 & 0.0001 & 0.7167 & 0.4850 & Yes & 1893.21 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1693.27 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0011 + 0.0026\, x_t \\
+\mu_{2} &= -0.0000 -0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0270 + 0.3322\, y_{t-1}^2 + 0.6635\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7347 & 0.2653 \\ 0.5358 & 0.4642 \end{pmatrix}
+\end{equation}
+LogLik $= 1891.71$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0002 + 0.0002\, x_t \\
+\mu_{2} &= -0.0085 -0.0026\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0086 + 0.2878\, y_{t-1}^2 + 0.7122\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5018 & 0.4982 \\ 0.2474 & 0.7526 \end{pmatrix}
+\end{equation}
+LogLik $= 1994.27$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0005 + 0.0022\, x_t \\
+\mu_{2} &= 0.0001 + 0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.2840\, y_{t-1}^2 + 0.5712\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7167 & 0.2833 \\ 0.5150 & 0.4850 \end{pmatrix}
+\end{equation}
+LogLik $= 1893.21$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1693.27$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{TLT}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{TLT --- Baseline Specification}
+\label{tab:tlt_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0204 & -0.0001 & -- & -- & 0.4310 & 0.1625 & 0.5545 & 0.0001 & 0.0001 & 0.0001 & 0.7467 & 0.5053 & Yes & -1173.63 \\
+Plug-in & -0.0082 & -0.0001 & -- & -- & 0.0678 & 0.1965 & 0.8035 & 0.0001 & 0.0001 & 0.0001 & 0.7908 & 0.5119 & Yes & -934.93 \\
+Quadrature & -0.0001 & -0.0503 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1621 & 0.1985 & 0.7949 & 0.4683 & 0.7582 & Yes & -1200.19 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3249.52 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0204 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4310 + 0.1625\, y_{t-1}^2 + 0.5545\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7467 & 0.2533 \\ 0.4947 & 0.5053 \end{pmatrix}
+\end{equation}
+LogLik $= -1173.63$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0082 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0678 + 0.1965\, y_{t-1}^2 + 0.8035\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7908 & 0.2092 \\ 0.4881 & 0.5119 \end{pmatrix}
+\end{equation}
+LogLik $= -934.93$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0001 \\
+\mu_{2} &= -0.0503
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1621 + 0.1985\, y_{t-1}^2 + 0.7949\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4683 & 0.5317 \\ 0.2418 & 0.7582 \end{pmatrix}
+\end{equation}
+LogLik $= -1200.19$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3249.52$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{TLT --- Exogenous Specification}
+\label{tab:tlt_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0225 & -0.0001 & -0.0024 & -0.0001 & 0.2859 & 0.1930 & 0.8005 & 0.0001 & 0.0001 & 0.0001 & 0.7471 & 0.4607 & Yes & -1170.40 \\
+Plug-in & 0.0405 & -0.0005 & 0.0136 & 0.0001 & 0.0405 & 0.1273 & 0.8727 & 0.0001 & 0.0001 & 0.0001 & 0.7469 & 0.5184 & Yes & -926.61 \\
+Quadrature & -0.0285 & -0.0003 & 0.0059 & 0.0000 & 0.1776 & 0.1736 & 0.8243 & 0.0001 & 0.0001 & 0.0001 & 0.7407 & 0.4673 & Yes & -1193.51 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3339.23 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0225 -0.0024\, x_t \\
+\mu_{2} &= -0.0001 -0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2859 + 0.1930\, y_{t-1}^2 + 0.8005\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7471 & 0.2529 \\ 0.5393 & 0.4607 \end{pmatrix}
+\end{equation}
+LogLik $= -1170.40$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0405 + 0.0136\, x_t \\
+\mu_{2} &= -0.0005 + 0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0405 + 0.1273\, y_{t-1}^2 + 0.8727\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7469 & 0.2531 \\ 0.4816 & 0.5184 \end{pmatrix}
+\end{equation}
+LogLik $= -926.61$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0285 + 0.0059\, x_t \\
+\mu_{2} &= -0.0003 + 0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1776 + 0.1736\, y_{t-1}^2 + 0.8243\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7407 & 0.2593 \\ 0.5327 & 0.4673 \end{pmatrix}
+\end{equation}
+LogLik $= -1193.51$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3339.23$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{BNDX}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{BNDX --- Baseline Specification}
+\label{tab:bndx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0068 & 0.0000 & -- & -- & 0.0262 & 0.3886 & 0.6108 & 0.0001 & 0.0001 & 0.0001 & 0.7316 & 0.4414 & Yes & 1854.41 \\
+Plug-in & 0.0005 & 0.0082 & -- & -- & 0.0001 & 0.0001 & 0.0020 & 0.0076 & 0.3010 & 0.6990 & 0.5175 & 0.7284 & Yes & 1992.60 \\
+Quadrature & 0.0071 & 0.0004 & -- & -- & 0.0001 & 0.3053 & 0.5660 & 0.0001 & 0.0001 & 0.0001 & 0.7077 & 0.4657 & Yes & 1864.15 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1463.24 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0068 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0262 + 0.3886\, y_{t-1}^2 + 0.6108\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7316 & 0.2684 \\ 0.5586 & 0.4414 \end{pmatrix}
+\end{equation}
+LogLik $= 1854.41$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0005 \\
+\mu_{2} &= 0.0082
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0020\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0076 + 0.3010\, y_{t-1}^2 + 0.6990\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5175 & 0.4825 \\ 0.2716 & 0.7284 \end{pmatrix}
+\end{equation}
+LogLik $= 1992.60$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0071 \\
+\mu_{2} &= 0.0004
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.3053\, y_{t-1}^2 + 0.5660\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7077 & 0.2923 \\ 0.5343 & 0.4657 \end{pmatrix}
+\end{equation}
+LogLik $= 1864.15$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1463.24$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{BNDX --- Exogenous Specification}
+\label{tab:bndx_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0072 & 0.0005 & -0.0099 & 0.0001 & 0.0249 & 0.2959 & 0.7019 & 0.0001 & 0.0001 & 0.0001 & 0.7255 & 0.4732 & Yes & 1874.11 \\
+Plug-in & 0.0004 & 0.0098 & 0.0001 & -0.0050 & 0.0001 & 0.0001 & 0.0012 & 0.0103 & 0.3731 & 0.6265 & 0.4482 & 0.7258 & Yes & 1965.75 \\
+Quadrature & 0.0082 & 0.0004 & -0.0099 & 0.0001 & 0.0001 & 0.2883 & 0.5664 & 0.0001 & 0.0001 & 0.0001 & 0.7055 & 0.4650 & Yes & 1871.45 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1707.50 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0072 -0.0099\, x_t \\
+\mu_{2} &= 0.0005 + 0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0249 + 0.2959\, y_{t-1}^2 + 0.7019\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7255 & 0.2745 \\ 0.5268 & 0.4732 \end{pmatrix}
+\end{equation}
+LogLik $= 1874.11$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0004 + 0.0001\, x_t \\
+\mu_{2} &= 0.0098 -0.0050\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0012\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0103 + 0.3731\, y_{t-1}^2 + 0.6265\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4482 & 0.5518 \\ 0.2742 & 0.7258 \end{pmatrix}
+\end{equation}
+LogLik $= 1965.75$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0082 -0.0099\, x_t \\
+\mu_{2} &= 0.0004 + 0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.2883\, y_{t-1}^2 + 0.5664\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7055 & 0.2945 \\ 0.5350 & 0.4650 \end{pmatrix}
+\end{equation}
+LogLik $= 1871.45$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1707.50$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{LQD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{LQD --- Baseline Specification}
+\label{tab:lqd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0000 & 0.0001 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0791 & 0.3147 & 0.6852 & 0.3967 & 0.7547 & Yes & 310.69 \\
+Plug-in & -0.0000 & 0.0325 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0295 & 0.2940 & 0.7060 & 0.5094 & 0.8025 & No & 482.71 \\
+Quadrature & 0.0243 & -0.0003 & -- & -- & 0.0180 & 0.2731 & 0.7269 & 0.0001 & 0.0001 & 0.0001 & 0.7045 & 0.4639 & Yes & 293.74 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1996.75 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0791 + 0.3147\, y_{t-1}^2 + 0.6852\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.3967 & 0.6033 \\ 0.2453 & 0.7547 \end{pmatrix}
+\end{equation}
+LogLik $= 310.69$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0325
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0295 + 0.2940\, y_{t-1}^2 + 0.7060\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5094 & 0.4906 \\ 0.1975 & 0.8025 \end{pmatrix}
+\end{equation}
+LogLik $= 482.71$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0243 \\
+\mu_{2} &= -0.0003
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0180 + 0.2731\, y_{t-1}^2 + 0.7269\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7045 & 0.2955 \\ 0.5361 & 0.4639 \end{pmatrix}
+\end{equation}
+LogLik $= 293.74$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1996.75$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{LQD --- Exogenous Specification}
+\label{tab:lqd_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0044 & -0.0000 & 0.0111 & -0.0002 & 0.0895 & 0.3175 & 0.6825 & 0.0001 & 0.0001 & 0.0001 & 0.7551 & 0.4700 & Yes & 316.53 \\
+Plug-in & 0.0153 & 0.0001 & 0.0110 & -0.0002 & 0.0286 & 0.3169 & 0.6831 & 0.0001 & 0.0001 & 0.0001 & 0.8154 & 0.5081 & Yes & 467.55 \\
+Quadrature & 0.0475 & 0.0000 & 0.0230 & -0.0001 & 0.0231 & 0.3555 & 0.6445 & 0.0001 & 0.0001 & 0.0001 & 0.7441 & 0.3965 & Yes & 275.63 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -2165.86 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0044 + 0.0111\, x_t \\
+\mu_{2} &= -0.0000 -0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0895 + 0.3175\, y_{t-1}^2 + 0.6825\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7551 & 0.2449 \\ 0.5300 & 0.4700 \end{pmatrix}
+\end{equation}
+LogLik $= 316.53$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0153 + 0.0110\, x_t \\
+\mu_{2} &= 0.0001 -0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0286 + 0.3169\, y_{t-1}^2 + 0.6831\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8154 & 0.1846 \\ 0.4919 & 0.5081 \end{pmatrix}
+\end{equation}
+LogLik $= 467.55$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0475 + 0.0230\, x_t \\
+\mu_{2} &= 0.0000 -0.0001\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0231 + 0.3555\, y_{t-1}^2 + 0.6445\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7441 & 0.2559 \\ 0.6035 & 0.3965 \end{pmatrix}
+\end{equation}
+LogLik $= 275.63$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2165.86$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{HYG}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{HYG --- Baseline Specification}
+\label{tab:hyg_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0246 & -0.0015 & -- & -- & 0.0673 & 0.4066 & 0.5934 & 0.0001 & 0.0001 & 0.0001 & 0.8010 & 0.4364 & No & 597.67 \\
+Plug-in & 0.0015 & 0.0408 & -- & -- & 0.0001 & 0.0001 & 0.2165 & 0.0300 & 0.3273 & 0.6727 & 0.6582 & 0.7240 & Yes & 697.38 \\
+Quadrature & -0.0001 & 0.0526 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0272 & 0.5074 & 0.4926 & 0.4019 & 0.7372 & Yes & 579.36 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1889.53 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0246 \\
+\mu_{2} &= -0.0015
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0673 + 0.4066\, y_{t-1}^2 + 0.5934\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8010 & 0.1990 \\ 0.5636 & 0.4364 \end{pmatrix}
+\end{equation}
+LogLik $= 597.67$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0015 \\
+\mu_{2} &= 0.0408
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.2165\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0300 + 0.3273\, y_{t-1}^2 + 0.6727\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.6582 & 0.3418 \\ 0.2760 & 0.7240 \end{pmatrix}
+\end{equation}
+LogLik $= 697.38$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0001 \\
+\mu_{2} &= 0.0526
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0272 + 0.5074\, y_{t-1}^2 + 0.4926\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4019 & 0.5981 \\ 0.2628 & 0.7372 \end{pmatrix}
+\end{equation}
+LogLik $= 579.36$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1889.53$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{HYG --- Exogenous Specification}
+\label{tab:hyg_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0378 & -0.0003 & -0.0098 & 0.0000 & 0.0831 & 0.3436 & 0.6564 & 0.0001 & 0.3080 & 0.0001 & 0.4548 & 0.3933 & Yes & 270.36 \\
+Plug-in & 0.0201 & -0.0001 & -0.0124 & -0.0000 & 0.0274 & 0.4540 & 0.5460 & 0.0001 & 0.0001 & 0.0001 & 0.6616 & 0.4027 & No & 745.60 \\
+Quadrature & 0.0320 & -0.0001 & -0.0110 & 0.0000 & 0.0350 & 0.3466 & 0.6534 & 0.0001 & 0.4030 & 0.0001 & 0.4341 & 0.4188 & Yes & 260.54 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2060.93 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0378 -0.0098\, x_t \\
+\mu_{2} &= -0.0003 + 0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0831 + 0.3436\, y_{t-1}^2 + 0.6564\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.3080\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4548 & 0.5452 \\ 0.6067 & 0.3933 \end{pmatrix}
+\end{equation}
+LogLik $= 270.36$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0201 -0.0124\, x_t \\
+\mu_{2} &= -0.0001 -0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0274 + 0.4540\, y_{t-1}^2 + 0.5460\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.6616 & 0.3384 \\ 0.5973 & 0.4027 \end{pmatrix}
+\end{equation}
+LogLik $= 745.60$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0320 -0.0110\, x_t \\
+\mu_{2} &= -0.0001 + 0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0350 + 0.3466\, y_{t-1}^2 + 0.6534\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.4030\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4341 & 0.5659 \\ 0.5812 & 0.4188 \end{pmatrix}
+\end{equation}
+LogLik $= 260.54$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2060.93$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{TNX}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{TNX --- Baseline Specification}
+\label{tab:tnx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.1184 & -0.1153 & -- & -- & 0.2283 & 0.1209 & 0.8788 & 0.0404 & 0.0723 & 0.7736 & 0.9332 & 0.8257 & No & -5744.47 \\
+Plug-in & 0.0895 & 0.1516 & -- & -- & 0.1531 & 0.1622 & 0.8344 & 0.2504 & 0.2472 & 0.7193 & 0.9065 & 0.8745 & No & -5752.84 \\
+Quadrature & -0.1040 & 0.0193 & -- & -- & 0.3746 & 0.0622 & 0.7342 & 0.0237 & 0.0999 & 0.9000 & 0.7449 & 0.9900 & Yes & -5708.41 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -5821.83 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.1184 \\
+\mu_{2} &= -0.1153
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2283 + 0.1209\, y_{t-1}^2 + 0.8788\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0404 + 0.0723\, y_{t-1}^2 + 0.7736\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9332 & 0.0668 \\ 0.1743 & 0.8257 \end{pmatrix}
+\end{equation}
+LogLik $= -5744.47$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0895 \\
+\mu_{2} &= 0.1516
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1531 + 0.1622\, y_{t-1}^2 + 0.8344\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2504 + 0.2472\, y_{t-1}^2 + 0.7193\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9065 & 0.0935 \\ 0.1255 & 0.8745 \end{pmatrix}
+\end{equation}
+LogLik $= -5752.84$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.1040 \\
+\mu_{2} &= 0.0193
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3746 + 0.0622\, y_{t-1}^2 + 0.7342\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0237 + 0.0999\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7449 & 0.2551 \\ 0.0100 & 0.9900 \end{pmatrix}
+\end{equation}
+LogLik $= -5708.41$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -5821.83$; Converged: Yes.
+
+\clearpage
+\section{Cryptocurrency Market}
+\noindent Pivot (exogenous conditioning variable): \textbf{\texttt{BTC-USD}}.
+
+\subsection{Asset: \texttt{ETH-USD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{ETH-USD --- Baseline Specification}
+\label{tab:ethusd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.6126 & -0.6393 & -- & -- & 0.5422 & 0.0598 & 0.9000 & 0.3453 & 0.1928 & 0.8057 & 0.9045 & 0.7191 & Yes & -8106.68 \\
+Plug-in & 0.3134 & 0.1208 & -- & -- & 0.4091 & 0.1081 & 0.8919 & 0.2186 & 0.1249 & 0.7828 & 0.9506 & 0.7508 & No & -8073.57 \\
+Quadrature & 0.4393 & -0.4404 & -- & -- & 0.4501 & 0.1080 & 0.8919 & 0.2665 & 0.1473 & 0.7954 & 0.9554 & 0.7309 & Yes & -8120.74 \\
+Particle Filter & 0.0000 & -0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -9075.70 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.6126 \\
+\mu_{2} &= -0.6393
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5422 + 0.0598\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.3453 + 0.1928\, y_{t-1}^2 + 0.8057\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9045 & 0.0955 \\ 0.2809 & 0.7191 \end{pmatrix}
+\end{equation}
+LogLik $= -8106.68$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.3134 \\
+\mu_{2} &= 0.1208
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4091 + 0.1081\, y_{t-1}^2 + 0.8919\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2186 + 0.1249\, y_{t-1}^2 + 0.7828\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9506 & 0.0494 \\ 0.2492 & 0.7508 \end{pmatrix}
+\end{equation}
+LogLik $= -8073.57$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.4393 \\
+\mu_{2} &= -0.4404
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4501 + 0.1080\, y_{t-1}^2 + 0.8919\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2665 + 0.1473\, y_{t-1}^2 + 0.7954\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9554 & 0.0446 \\ 0.2691 & 0.7309 \end{pmatrix}
+\end{equation}
+LogLik $= -8120.74$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -9075.70$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{ETH-USD --- Exogenous Specification}
+\label{tab:ethusd_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4167 & -0.5453 & -0.0869 & 0.5502 & 0.4877 & 0.0668 & 0.8936 & 0.3127 & 0.1736 & 0.8255 & 0.9791 & 0.7073 & Yes & -8072.60 \\
+Plug-in & 0.5905 & 0.5930 & -0.6630 & 0.7643 & 0.6762 & 0.2424 & 0.6657 & 0.5989 & 0.3196 & 0.6704 & 0.7854 & 0.8105 & No & -8295.24 \\
+Quadrature & 0.2852 & -0.3721 & -0.0624 & 0.4278 & 0.4565 & 0.0608 & 0.9000 & 0.2452 & 0.1417 & 0.8569 & 0.9653 & 0.7370 & Yes & -8072.25 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -9071.62 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4167 -0.0869\, x_t \\
+\mu_{2} &= -0.5453 + 0.5502\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4877 + 0.0668\, y_{t-1}^2 + 0.8936\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.3127 + 0.1736\, y_{t-1}^2 + 0.8255\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9791 & 0.0209 \\ 0.2927 & 0.7073 \end{pmatrix}
+\end{equation}
+LogLik $= -8072.60$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.5905 -0.6630\, x_t \\
+\mu_{2} &= 0.5930 + 0.7643\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.6762 + 0.2424\, y_{t-1}^2 + 0.6657\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.5989 + 0.3196\, y_{t-1}^2 + 0.6704\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7854 & 0.2146 \\ 0.1895 & 0.8105 \end{pmatrix}
+\end{equation}
+LogLik $= -8295.24$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.2852 -0.0624\, x_t \\
+\mu_{2} &= -0.3721 + 0.4278\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4565 + 0.0608\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2452 + 0.1417\, y_{t-1}^2 + 0.8569\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9653 & 0.0347 \\ 0.2630 & 0.7370 \end{pmatrix}
+\end{equation}
+LogLik $= -8072.25$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -9071.62$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{LTC-USD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{LTC-USD --- Baseline Specification}
+\label{tab:ltcusd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4181 & -0.3490 & -- & -- & 0.4426 & 0.1128 & 0.8867 & 0.2586 & 0.1439 & 0.7944 & 0.9563 & 0.7337 & No & -8316.54 \\
+Plug-in & -0.0339 & 0.1039 & -- & -- & 0.4205 & 0.1101 & 0.8898 & 0.2297 & 0.1314 & 0.7840 & 0.9508 & 0.7462 & No & -8269.21 \\
+Quadrature & 0.4244 & -0.3186 & -- & -- & 0.4449 & 0.1151 & 0.8848 & 0.2611 & 0.1455 & 0.7943 & 0.9563 & 0.7327 & No & -8317.06 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -9342.67 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4181 \\
+\mu_{2} &= -0.3490
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4426 + 0.1128\, y_{t-1}^2 + 0.8867\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2586 + 0.1439\, y_{t-1}^2 + 0.7944\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9563 & 0.0437 \\ 0.2663 & 0.7337 \end{pmatrix}
+\end{equation}
+LogLik $= -8316.54$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0339 \\
+\mu_{2} &= 0.1039
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4205 + 0.1101\, y_{t-1}^2 + 0.8898\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2297 + 0.1314\, y_{t-1}^2 + 0.7840\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9508 & 0.0492 \\ 0.2538 & 0.7462 \end{pmatrix}
+\end{equation}
+LogLik $= -8269.21$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.4244 \\
+\mu_{2} &= -0.3186
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4449 + 0.1151\, y_{t-1}^2 + 0.8848\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2611 + 0.1455\, y_{t-1}^2 + 0.7943\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9563 & 0.0437 \\ 0.2673 & 0.7327 \end{pmatrix}
+\end{equation}
+LogLik $= -8317.06$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -9342.67$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{LTC-USD --- Exogenous Specification}
+\label{tab:ltcusd_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.2039 & -0.1757 & -0.1141 & 0.2751 & 0.4092 & 0.0845 & 0.9000 & 0.1869 & 0.1355 & 0.8606 & 0.9884 & 0.7561 & Yes & -8292.09 \\
+Plug-in & -0.6148 & 0.6157 & -0.5239 & 0.6990 & 0.3360 & 0.2033 & 0.7488 & 0.4238 & 0.3039 & 0.6946 & 0.8040 & 0.8736 & No & -8471.67 \\
+Quadrature & 0.1923 & -0.1625 & -0.1149 & 0.2713 & 0.4130 & 0.0865 & 0.9000 & 0.1897 & 0.1409 & 0.8585 & 0.9807 & 0.7488 & Yes & -8291.69 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -9342.78 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.2039 -0.1141\, x_t \\
+\mu_{2} &= -0.1757 + 0.2751\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4092 + 0.0845\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1869 + 0.1355\, y_{t-1}^2 + 0.8606\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9884 & 0.0116 \\ 0.2439 & 0.7561 \end{pmatrix}
+\end{equation}
+LogLik $= -8292.09$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.6148 -0.5239\, x_t \\
+\mu_{2} &= 0.6157 + 0.6990\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3360 + 0.2033\, y_{t-1}^2 + 0.7488\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4238 + 0.3039\, y_{t-1}^2 + 0.6946\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8040 & 0.1960 \\ 0.1264 & 0.8736 \end{pmatrix}
+\end{equation}
+LogLik $= -8471.67$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.1923 -0.1149\, x_t \\
+\mu_{2} &= -0.1625 + 0.2713\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4130 + 0.0865\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1897 + 0.1409\, y_{t-1}^2 + 0.8585\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9807 & 0.0193 \\ 0.2512 & 0.7488 \end{pmatrix}
+\end{equation}
+LogLik $= -8291.69$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -9342.78$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{XRP-USD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{XRP-USD --- Baseline Specification}
+\label{tab:xrpusd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4434 & 0.6430 & -- & -- & 0.3379 & 0.1705 & 0.7626 & 0.4197 & 0.2863 & 0.7136 & 0.8160 & 0.8847 & No & -9143.45 \\
+Plug-in & 0.4248 & -0.4242 & -- & -- & 0.4469 & 0.1223 & 0.8774 & 0.2607 & 0.1424 & 0.7849 & 0.9489 & 0.7341 & No & -8822.00 \\
+Quadrature & 1.4539 & -1.4449 & -- & -- & 0.8731 & 0.1863 & 0.8134 & 0.6844 & 0.3883 & 0.5541 & 0.7274 & 0.7523 & No & -8514.52 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10373.34 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4434 \\
+\mu_{2} &= 0.6430
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3379 + 0.1705\, y_{t-1}^2 + 0.7626\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4197 + 0.2863\, y_{t-1}^2 + 0.7136\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8160 & 0.1840 \\ 0.1153 & 0.8847 \end{pmatrix}
+\end{equation}
+LogLik $= -9143.45$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.4248 \\
+\mu_{2} &= -0.4242
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4469 + 0.1223\, y_{t-1}^2 + 0.8774\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2607 + 0.1424\, y_{t-1}^2 + 0.7849\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9489 & 0.0511 \\ 0.2659 & 0.7341 \end{pmatrix}
+\end{equation}
+LogLik $= -8822.00$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 1.4539 \\
+\mu_{2} &= -1.4449
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8731 + 0.1863\, y_{t-1}^2 + 0.8134\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.6844 + 0.3883\, y_{t-1}^2 + 0.5541\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7274 & 0.2726 \\ 0.2477 & 0.7523 \end{pmatrix}
+\end{equation}
+LogLik $= -8514.52$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -10373.34$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{XRP-USD --- Exogenous Specification}
+\label{tab:xrpusd_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4513 & -0.4648 & -0.3028 & 0.4799 & 0.5408 & 0.0350 & 0.9000 & 0.2814 & 0.1950 & 0.8012 & 0.9489 & 0.7324 & No & -8520.39 \\
+Plug-in & 0.4094 & -0.4084 & -0.3651 & -0.3614 & 0.4399 & 0.1168 & 0.8829 & 0.2545 & 0.1348 & 0.7829 & 0.9479 & 0.7367 & No & -8686.18 \\
+Quadrature & 0.5024 & -0.5475 & -0.2190 & 0.3982 & 0.5735 & 0.0455 & 0.9000 & 0.3131 & 0.2130 & 0.7869 & 0.9438 & 0.7205 & Yes & -8507.94 \\
+Particle Filter & 0.0032 & 0.0032 & 0.0532 & 0.0467 & 0.3011 & 0.0505 & 0.8500 & 0.0999 & 0.0799 & 0.7801 & 0.9500 & 0.8001 & Yes & -10360.16 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4513 -0.3028\, x_t \\
+\mu_{2} &= -0.4648 + 0.4799\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5408 + 0.0350\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2814 + 0.1950\, y_{t-1}^2 + 0.8012\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9489 & 0.0511 \\ 0.2676 & 0.7324 \end{pmatrix}
+\end{equation}
+LogLik $= -8520.39$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.4094 -0.3651\, x_t \\
+\mu_{2} &= -0.4084 -0.3614\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4399 + 0.1168\, y_{t-1}^2 + 0.8829\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2545 + 0.1348\, y_{t-1}^2 + 0.7829\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9479 & 0.0521 \\ 0.2633 & 0.7367 \end{pmatrix}
+\end{equation}
+LogLik $= -8686.18$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.5024 -0.2190\, x_t \\
+\mu_{2} &= -0.5475 + 0.3982\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5735 + 0.0455\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.3131 + 0.2130\, y_{t-1}^2 + 0.7869\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9438 & 0.0562 \\ 0.2795 & 0.7205 \end{pmatrix}
+\end{equation}
+LogLik $= -8507.94$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0032 + 0.0532\, x_t \\
+\mu_{2} &= 0.0032 + 0.0467\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3011 + 0.0505\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0999 + 0.0799\, y_{t-1}^2 + 0.7801\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.1999 & 0.8001 \end{pmatrix}
+\end{equation}
+LogLik $= -10360.16$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{DOGE-USD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{DOGE-USD --- Baseline Specification}
+\label{tab:dogeusd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4167 & 0.0367 & -- & -- & 0.4397 & 0.1063 & 0.8935 & 0.2577 & 0.1609 & 0.8029 & 0.9631 & 0.7319 & No & -8752.64 \\
+Plug-in & 0.2567 & -0.2505 & -- & -- & 0.3865 & 0.1072 & 0.8928 & 0.1955 & 0.1089 & 0.7798 & 0.9476 & 0.7612 & No & -8613.45 \\
+Quadrature & 0.7571 & 0.7576 & -- & -- & 0.3856 & 0.2121 & 0.7378 & 0.4723 & 0.3139 & 0.6809 & 0.7704 & 0.9076 & No & -9069.31 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -10260.15 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4167 \\
+\mu_{2} &= 0.0367
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4397 + 0.1063\, y_{t-1}^2 + 0.8935\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2577 + 0.1609\, y_{t-1}^2 + 0.8029\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9631 & 0.0369 \\ 0.2681 & 0.7319 \end{pmatrix}
+\end{equation}
+LogLik $= -8752.64$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.2567 \\
+\mu_{2} &= -0.2505
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3865 + 0.1072\, y_{t-1}^2 + 0.8928\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1955 + 0.1089\, y_{t-1}^2 + 0.7798\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9476 & 0.0524 \\ 0.2388 & 0.7612 \end{pmatrix}
+\end{equation}
+LogLik $= -8613.45$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.7571 \\
+\mu_{2} &= 0.7576
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3856 + 0.2121\, y_{t-1}^2 + 0.7378\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4723 + 0.3139\, y_{t-1}^2 + 0.6809\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7704 & 0.2296 \\ 0.0924 & 0.9076 \end{pmatrix}
+\end{equation}
+LogLik $= -9069.31$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -10260.15$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{DOGE-USD --- Exogenous Specification}
+\label{tab:dogeusd_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.3375 & 0.1429 & -0.2900 & 0.3867 & 0.4231 & 0.1150 & 0.8845 & 0.2385 & 0.1427 & 0.7962 & 0.9397 & 0.7458 & No & -8743.14 \\
+Plug-in & -0.6670 & 0.6699 & -0.5781 & 0.7548 & 0.3549 & 0.2127 & 0.7381 & 0.4377 & 0.3194 & 0.6804 & 0.7972 & 0.8755 & No & -8872.36 \\
+Quadrature & 0.3266 & 0.1761 & -0.2776 & 0.3775 & 0.4121 & 0.1128 & 0.8872 & 0.2246 & 0.1395 & 0.7981 & 0.9400 & 0.7511 & Yes & -8741.70 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10266.08 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.3375 -0.2900\, x_t \\
+\mu_{2} &= 0.1429 + 0.3867\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4231 + 0.1150\, y_{t-1}^2 + 0.8845\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2385 + 0.1427\, y_{t-1}^2 + 0.7962\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9397 & 0.0603 \\ 0.2542 & 0.7458 \end{pmatrix}
+\end{equation}
+LogLik $= -8743.14$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.6670 -0.5781\, x_t \\
+\mu_{2} &= 0.6699 + 0.7548\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3549 + 0.2127\, y_{t-1}^2 + 0.7381\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4377 + 0.3194\, y_{t-1}^2 + 0.6804\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7972 & 0.2028 \\ 0.1245 & 0.8755 \end{pmatrix}
+\end{equation}
+LogLik $= -8872.36$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.3266 -0.2776\, x_t \\
+\mu_{2} &= 0.1761 + 0.3775\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4121 + 0.1128\, y_{t-1}^2 + 0.8872\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2246 + 0.1395\, y_{t-1}^2 + 0.7981\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9400 & 0.0600 \\ 0.2489 & 0.7511 \end{pmatrix}
+\end{equation}
+LogLik $= -8741.70$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -10266.08$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{NMC-USD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{NMC-USD --- Baseline Specification}
+\label{tab:nmcusd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.3516 & 0.3519 & -- & -- & 0.4205 & 0.1121 & 0.8861 & 0.2336 & 0.1310 & 0.7922 & 0.9638 & 0.7428 & No & -9126.19 \\
+Plug-in & -0.3969 & 0.7938 & -- & -- & 0.4041 & 0.2430 & 0.7560 & 0.4814 & 0.2948 & 0.6342 & 0.7760 & 0.8951 & No & -9326.54 \\
+Quadrature & 0.3394 & 0.3397 & -- & -- & 0.4165 & 0.1107 & 0.8879 & 0.2289 & 0.1276 & 0.7921 & 0.9659 & 0.7444 & No & -9121.91 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10525.65 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.3516 \\
+\mu_{2} &= 0.3519
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4205 + 0.1121\, y_{t-1}^2 + 0.8861\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2336 + 0.1310\, y_{t-1}^2 + 0.7922\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9638 & 0.0362 \\ 0.2572 & 0.7428 \end{pmatrix}
+\end{equation}
+LogLik $= -9126.19$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.3969 \\
+\mu_{2} &= 0.7938
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4041 + 0.2430\, y_{t-1}^2 + 0.7560\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4814 + 0.2948\, y_{t-1}^2 + 0.6342\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7760 & 0.2240 \\ 0.1049 & 0.8951 \end{pmatrix}
+\end{equation}
+LogLik $= -9326.54$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.3394 \\
+\mu_{2} &= 0.3397
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4165 + 0.1107\, y_{t-1}^2 + 0.8879\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2289 + 0.1276\, y_{t-1}^2 + 0.7921\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9659 & 0.0341 \\ 0.2556 & 0.7444 \end{pmatrix}
+\end{equation}
+LogLik $= -9121.91$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -10525.65$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{NMC-USD --- Exogenous Specification}
+\label{tab:nmcusd_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.2912 & 0.2977 & -0.2788 & 0.4511 & 0.4738 & 0.0678 & 0.9000 & 0.2611 & 0.2195 & 0.7801 & 0.8732 & 0.7470 & Yes & -9025.39 \\
+Plug-in & 0.2801 & 0.3165 & 0.3636 & -0.2702 & 0.4081 & 0.1090 & 0.8907 & 0.2200 & 0.1237 & 0.7828 & 0.9486 & 0.7509 & No & -9005.87 \\
+Quadrature & 0.1893 & -0.2462 & -0.2546 & 0.9347 & 0.7896 & 0.1000 & 0.9000 & 0.4749 & 0.3541 & 0.3659 & 0.9724 & 0.7735 & Yes & -8987.10 \\
+Particle Filter & 0.0000 & -0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10527.21 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.2912 -0.2788\, x_t \\
+\mu_{2} &= 0.2977 + 0.4511\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4738 + 0.0678\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2611 + 0.2195\, y_{t-1}^2 + 0.7801\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8732 & 0.1268 \\ 0.2530 & 0.7470 \end{pmatrix}
+\end{equation}
+LogLik $= -9025.39$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.2801 + 0.3636\, x_t \\
+\mu_{2} &= 0.3165 -0.2702\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4081 + 0.1090\, y_{t-1}^2 + 0.8907\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2200 + 0.1237\, y_{t-1}^2 + 0.7828\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9486 & 0.0514 \\ 0.2491 & 0.7509 \end{pmatrix}
+\end{equation}
+LogLik $= -9005.87$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.1893 -0.2546\, x_t \\
+\mu_{2} &= -0.2462 + 0.9347\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.7896 + 0.1000\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.4749 + 0.3541\, y_{t-1}^2 + 0.3659\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9724 & 0.0276 \\ 0.2265 & 0.7735 \end{pmatrix}
+\end{equation}
+LogLik $= -8987.10$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= -0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -10527.21$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{BTC-USD}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{BTC-USD --- Baseline Specification}
+\label{tab:btcusd_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.3250 & -0.1326 & -- & -- & 0.8259 & 0.0300 & 0.9000 & 0.3511 & 0.3121 & 0.6871 & 0.8265 & 0.7183 & Yes & -7297.71 \\
+Plug-in & 0.2967 & 0.2183 & -- & -- & 0.4060 & 0.1119 & 0.8874 & 0.0915 & 0.1184 & 0.7786 & 0.9415 & 0.7555 & No & -7232.32 \\
+Quadrature & 0.3018 & 0.0777 & -- & -- & 0.8128 & 0.0262 & 0.9000 & 0.3007 & 0.3465 & 0.6485 & 0.8635 & 0.7211 & No & -7297.61 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -7853.80 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.3250 \\
+\mu_{2} &= -0.1326
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8259 + 0.0300\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.3511 + 0.3121\, y_{t-1}^2 + 0.6871\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8265 & 0.1735 \\ 0.2817 & 0.7183 \end{pmatrix}
+\end{equation}
+LogLik $= -7297.71$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.2967 \\
+\mu_{2} &= 0.2183
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4060 + 0.1119\, y_{t-1}^2 + 0.8874\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0915 + 0.1184\, y_{t-1}^2 + 0.7786\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9415 & 0.0585 \\ 0.2445 & 0.7555 \end{pmatrix}
+\end{equation}
+LogLik $= -7232.32$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.3018 \\
+\mu_{2} &= 0.0777
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8128 + 0.0262\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.3007 + 0.3465\, y_{t-1}^2 + 0.6485\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8635 & 0.1365 \\ 0.2789 & 0.7211 \end{pmatrix}
+\end{equation}
+LogLik $= -7297.61$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -7853.80$; Converged: Yes.
+
+\clearpage
+\section{Derivatives Market}
+\noindent Pivot (exogenous conditioning variable): \textbf{\texttt{BTC=F}}.
+
+\subsection{Asset: \texttt{ES$=$F}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{ES$=$F --- Baseline Specification}
+\label{tab:esf_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.2298 & 0.1249 & -- & -- & 0.3382 & 0.1647 & 0.8349 & 0.0001 & 0.0788 & 0.6385 & 0.8468 & 0.9184 & Yes & -3363.57 \\
+Plug-in & 0.0393 & 0.0001 & -- & -- & 0.0990 & 0.2335 & 0.7656 & 0.0001 & 0.0001 & 0.0001 & 0.8017 & 0.4978 & Yes & -1095.35 \\
+Quadrature & -0.0299 & -0.0005 & -- & -- & 0.3765 & 0.2055 & 0.7937 & 0.0001 & 0.0901 & 0.0001 & 0.6221 & 0.4310 & No & -2011.93 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3564.02 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.2298 \\
+\mu_{2} &= 0.1249
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3382 + 0.1647\, y_{t-1}^2 + 0.8349\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0788\, y_{t-1}^2 + 0.6385\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8468 & 0.1532 \\ 0.0816 & 0.9184 \end{pmatrix}
+\end{equation}
+LogLik $= -3363.57$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0393 \\
+\mu_{2} &= 0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0990 + 0.2335\, y_{t-1}^2 + 0.7656\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8017 & 0.1983 \\ 0.5022 & 0.4978 \end{pmatrix}
+\end{equation}
+LogLik $= -1095.35$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0299 \\
+\mu_{2} &= -0.0005
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3765 + 0.2055\, y_{t-1}^2 + 0.7937\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0901\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.6221 & 0.3779 \\ 0.5690 & 0.4310 \end{pmatrix}
+\end{equation}
+LogLik $= -2011.93$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3564.02$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{ES$=$F --- Exogenous Specification}
+\label{tab:esf_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0705 & 0.1069 & -0.0122 & 0.0036 & 0.5880 & 0.2359 & 0.7640 & 0.0234 & 0.1433 & 0.2650 & 0.7659 & 0.8125 & Yes & -3375.42 \\
+Plug-in & -0.0002 & 0.0630 & -0.0001 & -0.0035 & 0.0001 & 0.0001 & 0.0001 & 0.0966 & 0.2883 & 0.7117 & 0.5117 & 0.7569 & Yes & -1108.91 \\
+Quadrature & 0.0204 & 0.0655 & -0.0030 & 0.0038 & 0.6408 & 0.2333 & 0.7666 & 0.0001 & 0.0776 & 0.1548 & 0.7089 & 0.7513 & No & -3291.80 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -3789.14 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0705 -0.0122\, x_t \\
+\mu_{2} &= 0.1069 + 0.0036\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5880 + 0.2359\, y_{t-1}^2 + 0.7640\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0234 + 0.1433\, y_{t-1}^2 + 0.2650\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7659 & 0.2341 \\ 0.1875 & 0.8125 \end{pmatrix}
+\end{equation}
+LogLik $= -3375.42$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0002 -0.0001\, x_t \\
+\mu_{2} &= 0.0630 -0.0035\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0966 + 0.2883\, y_{t-1}^2 + 0.7117\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5117 & 0.4883 \\ 0.2431 & 0.7569 \end{pmatrix}
+\end{equation}
+LogLik $= -1108.91$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0204 -0.0030\, x_t \\
+\mu_{2} &= 0.0655 + 0.0038\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.6408 + 0.2333\, y_{t-1}^2 + 0.7666\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0776\, y_{t-1}^2 + 0.1548\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7089 & 0.2911 \\ 0.2487 & 0.7513 \end{pmatrix}
+\end{equation}
+LogLik $= -3291.80$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -3789.14$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{NQ$=$F}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{NQ$=$F --- Baseline Specification}
+\label{tab:nqf_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.4956 & 0.1470 & -- & -- & 0.7317 & 0.0746 & 0.9000 & 0.0001 & 0.0001 & 0.7779 & 0.8629 & 0.9609 & Yes & -4168.20 \\
+Plug-in & -0.0002 & 0.1257 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.2100 & 0.2449 & 0.7539 & 0.5117 & 0.7429 & Yes & -1708.53 \\
+Quadrature & -0.2432 & 0.0004 & -- & -- & 0.9614 & 0.1800 & 0.8192 & 0.0352 & 0.0909 & 0.1859 & 0.5977 & 0.7402 & No & -4142.41 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -4346.95 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.4956 \\
+\mu_{2} &= 0.1470
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.7317 + 0.0746\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.7779\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8629 & 0.1371 \\ 0.0391 & 0.9609 \end{pmatrix}
+\end{equation}
+LogLik $= -4168.20$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0002 \\
+\mu_{2} &= 0.1257
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2100 + 0.2449\, y_{t-1}^2 + 0.7539\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5117 & 0.4883 \\ 0.2571 & 0.7429 \end{pmatrix}
+\end{equation}
+LogLik $= -1708.53$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.2432 \\
+\mu_{2} &= 0.0004
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.9614 + 0.1800\, y_{t-1}^2 + 0.8192\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0352 + 0.0909\, y_{t-1}^2 + 0.1859\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5977 & 0.4023 \\ 0.2598 & 0.7402 \end{pmatrix}
+\end{equation}
+LogLik $= -4142.41$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -4346.95$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{NQ$=$F --- Exogenous Specification}
+\label{tab:nqf_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0568 & 0.1104 & -0.0123 & -0.0051 & 0.2432 & 0.1515 & 0.8484 & 0.0019 & 0.0919 & 0.7138 & 0.8589 & 0.8545 & No & -4259.78 \\
+Plug-in & -0.0001 & 0.0957 & -0.0003 & 0.0051 & 0.0001 & 0.0001 & 0.0001 & 0.2453 & 0.2590 & 0.7410 & 0.5016 & 0.7755 & Yes & -1717.33 \\
+Quadrature & 0.0603 & 0.1124 & -0.0230 & 0.0022 & 0.2318 & 0.1811 & 0.8172 & 0.0001 & 0.1069 & 0.6669 & 0.8376 & 0.8715 & No & -4300.29 \\
+Particle Filter & -0.0000 & -0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -4390.33 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0568 -0.0123\, x_t \\
+\mu_{2} &= 0.1104 -0.0051\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2432 + 0.1515\, y_{t-1}^2 + 0.8484\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0019 + 0.0919\, y_{t-1}^2 + 0.7138\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8589 & 0.1411 \\ 0.1455 & 0.8545 \end{pmatrix}
+\end{equation}
+LogLik $= -4259.78$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0001 -0.0003\, x_t \\
+\mu_{2} &= 0.0957 + 0.0051\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2453 + 0.2590\, y_{t-1}^2 + 0.7410\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.5016 & 0.4984 \\ 0.2245 & 0.7755 \end{pmatrix}
+\end{equation}
+LogLik $= -1717.33$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0603 -0.0230\, x_t \\
+\mu_{2} &= 0.1124 + 0.0022\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2318 + 0.1811\, y_{t-1}^2 + 0.8172\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.1069\, y_{t-1}^2 + 0.6669\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8376 & 0.1624 \\ 0.1285 & 0.8715 \end{pmatrix}
+\end{equation}
+LogLik $= -4300.29$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 + 0.0500\, x_t \\
+\mu_{2} &= -0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -4390.33$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{VIX}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{VIX --- Baseline Specification}
+\label{tab:vix_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.3530 & 0.3507 & -- & -- & 0.4207 & 0.1111 & 0.8876 & 0.2340 & 0.1312 & 0.7930 & 0.9664 & 0.7423 & No & -9369.61 \\
+Plug-in & 0.3015 & -0.3016 & -- & -- & 0.4032 & 0.1087 & 0.8894 & 0.2142 & 0.1188 & 0.7826 & 0.9513 & 0.7525 & No & -9248.85 \\
+Quadrature & 0.3551 & 0.2797 & -- & -- & 0.4243 & 0.1126 & 0.8873 & 0.2380 & 0.1332 & 0.7932 & 0.9657 & 0.7407 & No & -9364.19 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -11098.09 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.3530 \\
+\mu_{2} &= 0.3507
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4207 + 0.1111\, y_{t-1}^2 + 0.8876\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2340 + 0.1312\, y_{t-1}^2 + 0.7930\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9664 & 0.0336 \\ 0.2577 & 0.7423 \end{pmatrix}
+\end{equation}
+LogLik $= -9369.61$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.3015 \\
+\mu_{2} &= -0.3016
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4032 + 0.1087\, y_{t-1}^2 + 0.8894\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2142 + 0.1188\, y_{t-1}^2 + 0.7826\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9513 & 0.0487 \\ 0.2475 & 0.7525 \end{pmatrix}
+\end{equation}
+LogLik $= -9248.85$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.3551 \\
+\mu_{2} &= 0.2797
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4243 + 0.1126\, y_{t-1}^2 + 0.8873\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2380 + 0.1332\, y_{t-1}^2 + 0.7932\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9657 & 0.0343 \\ 0.2593 & 0.7407 \end{pmatrix}
+\end{equation}
+LogLik $= -9364.19$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -11098.09$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{VIX --- Exogenous Specification}
+\label{tab:vix_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4237 & 0.3489 & 0.4686 & -0.3806 & 0.4444 & 0.1177 & 0.8811 & 0.2612 & 0.1498 & 0.7963 & 0.9416 & 0.7347 & No & -9321.98 \\
+Plug-in & 0.4222 & -0.4223 & 0.4677 & -0.3767 & 0.4437 & 0.1220 & 0.8776 & 0.2604 & 0.1473 & 0.7879 & 0.9459 & 0.7346 & No & -9284.58 \\
+Quadrature & 0.7128 & 0.7112 & -0.7926 & 0.8766 & 0.7166 & 0.2768 & 0.7224 & 0.6291 & 0.3050 & 0.6538 & 0.7899 & 0.8031 & No & -9503.13 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -11097.16 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4237 + 0.4686\, x_t \\
+\mu_{2} &= 0.3489 -0.3806\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4444 + 0.1177\, y_{t-1}^2 + 0.8811\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2612 + 0.1498\, y_{t-1}^2 + 0.7963\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9416 & 0.0584 \\ 0.2653 & 0.7347 \end{pmatrix}
+\end{equation}
+LogLik $= -9321.98$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.4222 + 0.4677\, x_t \\
+\mu_{2} &= -0.4223 -0.3767\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.4437 + 0.1220\, y_{t-1}^2 + 0.8776\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2604 + 0.1473\, y_{t-1}^2 + 0.7879\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9459 & 0.0541 \\ 0.2654 & 0.7346 \end{pmatrix}
+\end{equation}
+LogLik $= -9284.58$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.7128 -0.7926\, x_t \\
+\mu_{2} &= 0.7112 + 0.8766\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.7166 + 0.2768\, y_{t-1}^2 + 0.7224\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.6291 + 0.3050\, y_{t-1}^2 + 0.6538\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7899 & 0.2101 \\ 0.1969 & 0.8031 \end{pmatrix}
+\end{equation}
+LogLik $= -9503.13$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -11097.16$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{GC$=$F}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{GC$=$F --- Baseline Specification}
+\label{tab:gcf_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0482 & 0.0002 & -- & -- & 0.8257 & 0.0482 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7494 & 0.5474 & Yes & -1105.49 \\
+Plug-in & 0.0357 & 0.0001 & -- & -- & 0.0416 & 0.0848 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.7598 & 0.5127 & Yes & -884.73 \\
+Quadrature & 0.0497 & 0.0002 & -- & -- & 0.8321 & 0.0493 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7491 & 0.5464 & Yes & -1130.01 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3267.32 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0482 \\
+\mu_{2} &= 0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8257 + 0.0482\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7494 & 0.2506 \\ 0.4526 & 0.5474 \end{pmatrix}
+\end{equation}
+LogLik $= -1105.49$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0357 \\
+\mu_{2} &= 0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0416 + 0.0848\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7598 & 0.2402 \\ 0.4873 & 0.5127 \end{pmatrix}
+\end{equation}
+LogLik $= -884.73$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0497 \\
+\mu_{2} &= 0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8321 + 0.0493\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7491 & 0.2509 \\ 0.4536 & 0.5464 \end{pmatrix}
+\end{equation}
+LogLik $= -1130.01$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3267.32$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{GC$=$F --- Exogenous Specification}
+\label{tab:gcf_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0467 & 0.0002 & -0.0008 & 0.0002 & 0.8268 & 0.0481 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7484 & 0.5471 & Yes & -1105.22 \\
+Plug-in & 0.0356 & 0.0001 & -0.0023 & -0.0000 & 0.0415 & 0.0850 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.7598 & 0.5129 & Yes & -884.64 \\
+Quadrature & 0.0479 & 0.0003 & -0.0010 & 0.0002 & 0.8316 & 0.0497 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7491 & 0.5468 & Yes & -1129.58 \\
+Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3551.41 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0467 -0.0008\, x_t \\
+\mu_{2} &= 0.0002 + 0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8268 + 0.0481\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7484 & 0.2516 \\ 0.4529 & 0.5471 \end{pmatrix}
+\end{equation}
+LogLik $= -1105.22$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0356 -0.0023\, x_t \\
+\mu_{2} &= 0.0001 -0.0000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0415 + 0.0850\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7598 & 0.2402 \\ 0.4871 & 0.5129 \end{pmatrix}
+\end{equation}
+LogLik $= -884.64$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0479 -0.0010\, x_t \\
+\mu_{2} &= 0.0003 + 0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.8316 + 0.0497\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7491 & 0.2509 \\ 0.4532 & 0.5468 \end{pmatrix}
+\end{equation}
+LogLik $= -1129.58$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= -0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -3551.41$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{CL$=$F}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{CL$=$F --- Baseline Specification}
+\label{tab:clf_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.1029 & 0.4738 & -- & -- & 0.2855 & 0.0985 & 0.9000 & 0.0001 & 0.1613 & 0.5101 & 0.9353 & 0.6840 & Yes & -5807.49 \\
+Plug-in & -0.0540 & 0.0125 & -- & -- & 0.5635 & 0.1940 & 0.8059 & 0.3725 & 0.2065 & 0.6159 & 0.7590 & 0.9173 & No & -5767.89 \\
+Quadrature & 0.0587 & 0.0703 & -- & -- & 0.0846 & 0.0764 & 0.9000 & 0.2353 & 0.2164 & 0.7820 & 0.9900 & 0.8262 & Yes & -5819.91 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -5874.11 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.1029 \\
+\mu_{2} &= 0.4738
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2855 + 0.0985\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.1613\, y_{t-1}^2 + 0.5101\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9353 & 0.0647 \\ 0.3160 & 0.6840 \end{pmatrix}
+\end{equation}
+LogLik $= -5807.49$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0540 \\
+\mu_{2} &= 0.0125
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.5635 + 0.1940\, y_{t-1}^2 + 0.8059\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.3725 + 0.2065\, y_{t-1}^2 + 0.6159\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7590 & 0.2410 \\ 0.0827 & 0.9173 \end{pmatrix}
+\end{equation}
+LogLik $= -5767.89$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0587 \\
+\mu_{2} &= 0.0703
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0846 + 0.0764\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2353 + 0.2164\, y_{t-1}^2 + 0.7820\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9900 & 0.0100 \\ 0.1738 & 0.8262 \end{pmatrix}
+\end{equation}
+LogLik $= -5819.91$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -5874.11$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{CL$=$F --- Exogenous Specification}
+\label{tab:clf_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0456 & 0.0593 & -0.0001 & -0.0137 & 0.2848 & 0.1052 & 0.8945 & 0.1006 & 0.0789 & 0.7595 & 0.9007 & 0.8103 & No & -5823.05 \\
+Plug-in & 0.0656 & 0.0005 & 0.0761 & 0.0005 & 0.2946 & 0.1629 & 0.8371 & 0.0001 & 0.0001 & 0.1781 & 0.7478 & 0.4320 & No & -3123.80 \\
+Quadrature & 0.0781 & 0.1144 & 0.0027 & -0.0241 & 0.1253 & 0.0606 & 0.9000 & 0.2606 & 0.2353 & 0.7647 & 0.9884 & 0.8334 & Yes & -5823.02 \\
+Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -5884.73 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0456 -0.0001\, x_t \\
+\mu_{2} &= 0.0593 -0.0137\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2848 + 0.1052\, y_{t-1}^2 + 0.8945\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1006 + 0.0789\, y_{t-1}^2 + 0.7595\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9007 & 0.0993 \\ 0.1897 & 0.8103 \end{pmatrix}
+\end{equation}
+LogLik $= -5823.05$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0656 + 0.0761\, x_t \\
+\mu_{2} &= 0.0005 + 0.0005\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2946 + 0.1629\, y_{t-1}^2 + 0.8371\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.1781\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7478 & 0.2522 \\ 0.5680 & 0.4320 \end{pmatrix}
+\end{equation}
+LogLik $= -3123.80$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0781 + 0.0027\, x_t \\
+\mu_{2} &= 0.1144 -0.0241\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1253 + 0.0606\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2606 + 0.2353\, y_{t-1}^2 + 0.7647\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9884 & 0.0116 \\ 0.1666 & 0.8334 \end{pmatrix}
+\end{equation}
+LogLik $= -5823.02$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0500\, x_t \\
+\mu_{2} &= 0.0000 + 0.0500\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -5884.73$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{BTC$=$F}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{BTC$=$F --- Baseline Specification}
+\label{tab:btcf_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.4107 & -0.1779 & -- & -- & 0.6992 & 0.0041 & 0.9000 & 0.5715 & 0.1156 & 0.8784 & 0.8169 & 0.7175 & Yes & -7441.63 \\
+Plug-in & 0.7002 & 0.6944 & -- & -- & 0.7114 & 0.2689 & 0.7137 & 0.6196 & 0.2778 & 0.5905 & 0.7869 & 0.8226 & No & -7692.15 \\
+Quadrature & 0.4257 & -0.1560 & -- & -- & 0.6956 & 0.0037 & 0.9000 & 0.5464 & 0.1097 & 0.8836 & 0.8764 & 0.8495 & Yes & -7441.91 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -8163.70 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.4107 \\
+\mu_{2} &= -0.1779
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.6992 + 0.0041\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.5715 + 0.1156\, y_{t-1}^2 + 0.8784\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8169 & 0.1831 \\ 0.2825 & 0.7175 \end{pmatrix}
+\end{equation}
+LogLik $= -7441.63$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.7002 \\
+\mu_{2} &= 0.6944
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.7114 + 0.2689\, y_{t-1}^2 + 0.7137\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.6196 + 0.2778\, y_{t-1}^2 + 0.5905\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7869 & 0.2131 \\ 0.1774 & 0.8226 \end{pmatrix}
+\end{equation}
+LogLik $= -7692.15$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.4257 \\
+\mu_{2} &= -0.1560
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.6956 + 0.0037\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.5464 + 0.1097\, y_{t-1}^2 + 0.8836\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8764 & 0.1236 \\ 0.1505 & 0.8495 \end{pmatrix}
+\end{equation}
+LogLik $= -7441.91$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.3000 + 0.0500\, y_{t-1}^2 + 0.8500\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1000 + 0.0800\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9500 & 0.0500 \\ 0.2000 & 0.8000 \end{pmatrix}
+\end{equation}
+LogLik $= -8163.70$; Converged: No.
+
+\clearpage
+\section{Foreign Exchange Market}
+\noindent Pivot (exogenous conditioning variable): \textbf{\texttt{EURUSD=X}}.
+
+\subsection{Asset: \texttt{GBPUSD$=$X}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{GBPUSD$=$X --- Baseline Specification}
+\label{tab:gbpusdx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0002 & -0.0002 & -- & -- & 0.0948 & 0.1729 & 0.8264 & 0.0001 & 0.0001 & 0.0001 & 0.7522 & 0.4401 & Yes & -51.61 \\
+Plug-in & -0.0015 & -0.0001 & -- & -- & 0.0120 & 0.0905 & 0.9000 & 0.0001 & 0.0001 & 0.0009 & 0.7643 & 0.4823 & Yes & 63.64 \\
+Quadrature & -0.0079 & -0.0002 & -- & -- & 0.0001 & 0.1098 & 0.8891 & 0.0001 & 0.0001 & 0.0001 & 0.7627 & 0.4483 & Yes & -76.25 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2116.49 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0002 \\
+\mu_{2} &= -0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0948 + 0.1729\, y_{t-1}^2 + 0.8264\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7522 & 0.2478 \\ 0.5599 & 0.4401 \end{pmatrix}
+\end{equation}
+LogLik $= -51.61$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0015 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0120 + 0.0905\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0009\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7643 & 0.2357 \\ 0.5177 & 0.4823 \end{pmatrix}
+\end{equation}
+LogLik $= 63.64$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0079 \\
+\mu_{2} &= -0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.1098\, y_{t-1}^2 + 0.8891\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7627 & 0.2373 \\ 0.5517 & 0.4483 \end{pmatrix}
+\end{equation}
+LogLik $= -76.25$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2116.49$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{GBPUSD$=$X --- Exogenous Specification}
+\label{tab:gbpusdx_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0002 & -0.0019 & 0.0007 & 0.0401 & 0.0001 & 0.0001 & 0.0001 & 0.0987 & 0.1496 & 0.8503 & 0.4826 & 0.7470 & Yes & -54.16 \\
+Plug-in & -0.0015 & -0.0001 & 0.0086 & 0.0005 & 0.0120 & 0.0905 & 0.9000 & 0.0001 & 0.0001 & 0.0009 & 0.7644 & 0.4822 & Yes & 63.75 \\
+Quadrature & 0.0014 & 0.0001 & 0.0177 & 0.0007 & 0.0189 & 0.2002 & 0.7965 & 0.0001 & 0.0001 & 0.0001 & 0.7483 & 0.4411 & Yes & -78.17 \\
+Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2120.49 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0002 + 0.0007\, x_t \\
+\mu_{2} &= -0.0019 + 0.0401\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0987 + 0.1496\, y_{t-1}^2 + 0.8503\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4826 & 0.5174 \\ 0.2530 & 0.7470 \end{pmatrix}
+\end{equation}
+LogLik $= -54.16$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0015 + 0.0086\, x_t \\
+\mu_{2} &= -0.0001 + 0.0005\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0120 + 0.0905\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0009\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7644 & 0.2356 \\ 0.5178 & 0.4822 \end{pmatrix}
+\end{equation}
+LogLik $= 63.75$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0014 + 0.0177\, x_t \\
+\mu_{2} &= 0.0001 + 0.0007\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0189 + 0.2002\, y_{t-1}^2 + 0.7965\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7483 & 0.2517 \\ 0.5589 & 0.4411 \end{pmatrix}
+\end{equation}
+LogLik $= -78.17$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= -0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2120.49$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{JPY$=$X}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{JPY$=$X --- Baseline Specification}
+\label{tab:jpyx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0452 & 0.0000 & -- & -- & 0.0919 & 0.1881 & 0.8119 & 0.0001 & 0.0001 & 0.0001 & 0.7805 & 0.4230 & No & -64.72 \\
+Plug-in & -0.0002 & 0.0195 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0362 & 0.3056 & 0.6944 & 0.4976 & 0.7621 & No & 71.36 \\
+Quadrature & 0.0234 & 0.0004 & -- & -- & 0.0010 & 0.2142 & 0.7854 & 0.0001 & 0.0001 & 0.0001 & 0.7634 & 0.3640 & Yes & -78.14 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -2108.91 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0452 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0919 + 0.1881\, y_{t-1}^2 + 0.8119\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7805 & 0.2195 \\ 0.5770 & 0.4230 \end{pmatrix}
+\end{equation}
+LogLik $= -64.72$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0002 \\
+\mu_{2} &= 0.0195
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0362 + 0.3056\, y_{t-1}^2 + 0.6944\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4976 & 0.5024 \\ 0.2379 & 0.7621 \end{pmatrix}
+\end{equation}
+LogLik $= 71.36$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0234 \\
+\mu_{2} &= 0.0004
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0010 + 0.2142\, y_{t-1}^2 + 0.7854\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7634 & 0.2366 \\ 0.6360 & 0.3640 \end{pmatrix}
+\end{equation}
+LogLik $= -78.14$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2108.91$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{JPY$=$X --- Exogenous Specification}
+\label{tab:jpyx_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0001 & 0.0309 & 0.0025 & -0.0809 & 0.0001 & 0.0001 & 0.0001 & 0.0875 & 0.2330 & 0.7670 & 0.4197 & 0.7736 & No & -66.56 \\
+Plug-in & 0.0001 & 0.0682 & 0.0024 & -0.0378 & 0.0001 & 0.0001 & 0.0001 & 0.0358 & 0.3058 & 0.6942 & 0.4986 & 0.7820 & No & 63.15 \\
+Quadrature & 0.0000 & 0.0095 & 0.0014 & -0.1335 & 0.0001 & 0.0001 & 0.0001 & 0.0085 & 0.1774 & 0.8223 & 0.4331 & 0.7419 & No & -74.43 \\
+Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -2116.35 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0001 + 0.0025\, x_t \\
+\mu_{2} &= 0.0309 -0.0809\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0875 + 0.2330\, y_{t-1}^2 + 0.7670\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4197 & 0.5803 \\ 0.2264 & 0.7736 \end{pmatrix}
+\end{equation}
+LogLik $= -66.56$; Converged: No.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0001 + 0.0024\, x_t \\
+\mu_{2} &= 0.0682 -0.0378\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0358 + 0.3058\, y_{t-1}^2 + 0.6942\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4986 & 0.5014 \\ 0.2180 & 0.7820 \end{pmatrix}
+\end{equation}
+LogLik $= 63.15$; Converged: No.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.0014\, x_t \\
+\mu_{2} &= 0.0095 -0.1335\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0085 + 0.1774\, y_{t-1}^2 + 0.8223\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4331 & 0.5669 \\ 0.2581 & 0.7419 \end{pmatrix}
+\end{equation}
+LogLik $= -74.43$; Converged: No.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2116.35$; Converged: No.
+
+\clearpage
+\subsection{Asset: \texttt{AUDUSD$=$X}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{AUDUSD$=$X --- Baseline Specification}
+\label{tab:audusdx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0004 & 0.0125 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1190 & 0.1000 & 0.9000 & 0.4328 & 0.7540 & Yes & -510.71 \\
+Plug-in & -0.0000 & -0.0158 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0174 & 0.0866 & 0.9000 & 0.4713 & 0.7732 & Yes & -376.14 \\
+Quadrature & -0.0126 & 0.0003 & -- & -- & 0.0350 & 0.1698 & 0.8276 & 0.0001 & 0.0001 & 0.0001 & 0.7515 & 0.4062 & Yes & -540.09 \\
+Particle Filter & 0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2384.22 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0004 \\
+\mu_{2} &= 0.0125
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.1190 + 0.1000\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4328 & 0.5672 \\ 0.2460 & 0.7540 \end{pmatrix}
+\end{equation}
+LogLik $= -510.71$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0158
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0174 + 0.0866\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4713 & 0.5287 \\ 0.2268 & 0.7732 \end{pmatrix}
+\end{equation}
+LogLik $= -376.14$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0126 \\
+\mu_{2} &= 0.0003
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0350 + 0.1698\, y_{t-1}^2 + 0.8276\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7515 & 0.2485 \\ 0.5938 & 0.4062 \end{pmatrix}
+\end{equation}
+LogLik $= -540.09$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2384.22$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{AUDUSD$=$X --- Exogenous Specification}
+\label{tab:audusdx_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0068 & 0.0002 & -0.0928 & -0.0012 & 0.1200 & 0.0997 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.7479 & 0.4420 & Yes & -509.76 \\
+Plug-in & -0.0163 & -0.0000 & -0.0526 & -0.0007 & 0.0173 & 0.0869 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.7731 & 0.4712 & Yes & -375.10 \\
+Quadrature & -0.0015 & 0.0000 & -0.0135 & -0.0012 & 0.0226 & 0.1004 & 0.8987 & 0.0001 & 0.0001 & 0.0001 & 0.7533 & 0.4427 & Yes & -532.90 \\
+Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2390.26 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0068 -0.0928\, x_t \\
+\mu_{2} &= 0.0002 -0.0012\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1200 + 0.0997\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7479 & 0.2521 \\ 0.5580 & 0.4420 \end{pmatrix}
+\end{equation}
+LogLik $= -509.76$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0163 -0.0526\, x_t \\
+\mu_{2} &= -0.0000 -0.0007\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0173 + 0.0869\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7731 & 0.2269 \\ 0.5288 & 0.4712 \end{pmatrix}
+\end{equation}
+LogLik $= -375.10$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0015 -0.0135\, x_t \\
+\mu_{2} &= 0.0000 -0.0012\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0226 + 0.1004\, y_{t-1}^2 + 0.8987\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7533 & 0.2467 \\ 0.5573 & 0.4427 \end{pmatrix}
+\end{equation}
+LogLik $= -532.90$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= -0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -2390.26$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{CHF$=$X}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{CHF$=$X --- Baseline Specification}
+\label{tab:chfx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0094 & 0.0003 & -- & -- & 0.0687 & 0.2163 & 0.7800 & 0.0001 & 0.0001 & 0.0001 & 0.7638 & 0.4721 & Yes & 302.30 \\
+Plug-in & -0.0005 & 0.0002 & -- & -- & 0.0244 & 0.1622 & 0.7876 & 0.0001 & 0.0001 & 0.0001 & 0.7655 & 0.4830 & Yes & 372.12 \\
+Quadrature & 0.0008 & 0.0002 & -- & -- & 0.0001 & 0.1670 & 0.8114 & 0.0001 & 0.0001 & 0.0001 & 0.7539 & 0.4700 & Yes & 286.83 \\
+Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1913.41 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0094 \\
+\mu_{2} &= 0.0003
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0687 + 0.2163\, y_{t-1}^2 + 0.7800\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7638 & 0.2362 \\ 0.5279 & 0.4721 \end{pmatrix}
+\end{equation}
+LogLik $= 302.30$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0005 \\
+\mu_{2} &= 0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0244 + 0.1622\, y_{t-1}^2 + 0.7876\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7655 & 0.2345 \\ 0.5170 & 0.4830 \end{pmatrix}
+\end{equation}
+LogLik $= 372.12$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0008 \\
+\mu_{2} &= 0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.1670\, y_{t-1}^2 + 0.8114\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7539 & 0.2461 \\ 0.5300 & 0.4700 \end{pmatrix}
+\end{equation}
+LogLik $= 286.83$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1913.41$; Converged: No.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{CHF$=$X --- Exogenous Specification}
+\label{tab:chfx_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0039 & 0.0000 & 0.0172 & 0.0007 & 0.0715 & 0.2024 & 0.7974 & 0.0001 & 0.0001 & 0.0001 & 0.7560 & 0.4638 & Yes & 303.39 \\
+Plug-in & 0.0002 & -0.0005 & 0.0004 & -0.0164 & 0.0001 & 0.0001 & 0.0001 & 0.0244 & 0.1615 & 0.7882 & 0.4831 & 0.7654 & Yes & 372.35 \\
+Quadrature & 0.0002 & 0.0006 & 0.0006 & -0.0223 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.1667 & 0.8117 & 0.4697 & 0.7537 & Yes & 287.22 \\
+Particle Filter & -0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1921.41 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0039 + 0.0172\, x_t \\
+\mu_{2} &= 0.0000 + 0.0007\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0715 + 0.2024\, y_{t-1}^2 + 0.7974\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7560 & 0.2440 \\ 0.5362 & 0.4638 \end{pmatrix}
+\end{equation}
+LogLik $= 303.39$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0002 + 0.0004\, x_t \\
+\mu_{2} &= -0.0005 -0.0164\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0244 + 0.1615\, y_{t-1}^2 + 0.7882\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4831 & 0.5169 \\ 0.2346 & 0.7654 \end{pmatrix}
+\end{equation}
+LogLik $= 372.35$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0002 + 0.0006\, x_t \\
+\mu_{2} &= 0.0006 -0.0223\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.1667\, y_{t-1}^2 + 0.8117\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4697 & 0.5303 \\ 0.2463 & 0.7537 \end{pmatrix}
+\end{equation}
+LogLik $= 287.22$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 + 0.1000\, x_t \\
+\mu_{2} &= 0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1921.41$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{EURGBP$=$X}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{EURGBP$=$X --- Baseline Specification}
+\label{tab:eurgbpx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0046 & 0.0003 & -- & -- & 0.2237 & 0.0801 & 0.0036 & 0.0001 & 0.0001 & 0.0001 & 0.7494 & 0.4941 & Yes & 274.11 \\
+Plug-in & 0.0114 & 0.0002 & -- & -- & 0.0057 & 0.1000 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.8046 & 0.6121 & Yes & 557.11 \\
+Quadrature & 0.0003 & 0.0044 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.2239 & 0.0797 & 0.0001 & 0.4959 & 0.7477 & Yes & 252.26 \\
+Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1878.74 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0046 \\
+\mu_{2} &= 0.0003
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2237 + 0.0801\, y_{t-1}^2 + 0.0036\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7494 & 0.2506 \\ 0.5059 & 0.4941 \end{pmatrix}
+\end{equation}
+LogLik $= 274.11$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0114 \\
+\mu_{2} &= 0.0002
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0057 + 0.1000\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.8046 & 0.1954 \\ 0.3879 & 0.6121 \end{pmatrix}
+\end{equation}
+LogLik $= 557.11$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0003 \\
+\mu_{2} &= 0.0044
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2239 + 0.0797\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.4959 & 0.5041 \\ 0.2523 & 0.7477 \end{pmatrix}
+\end{equation}
+LogLik $= 252.26$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= 0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1878.74$; Converged: Yes.
+
+\subsubsection*{Exogenous Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{EURGBP$=$X --- Exogenous Specification}
+\label{tab:eurgbpx_exogenous}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & 0.0045 & 0.0003 & -0.0208 & -0.0002 & 0.2235 & 0.0805 & 0.0035 & 0.0001 & 0.0001 & 0.0001 & 0.7494 & 0.4944 & Yes & 274.41 \\
+Plug-in & 0.0003 & -0.0408 & -0.0009 & 0.0103 & 0.0001 & 0.0001 & 0.0001 & 0.0190 & 0.2387 & 0.7612 & 0.3547 & 0.7669 & Yes & 498.56 \\
+Quadrature & 0.0046 & 0.0003 & -0.0210 & -0.0002 & 0.2237 & 0.0797 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7479 & 0.4958 & Yes & 252.55 \\
+Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1883.37 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Exogenous):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= 0.0045 -0.0208\, x_t \\
+\mu_{2} &= 0.0003 -0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2235 + 0.0805\, y_{t-1}^2 + 0.0035\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7494 & 0.2506 \\ 0.5056 & 0.4944 \end{pmatrix}
+\end{equation}
+LogLik $= 274.41$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= 0.0003 -0.0009\, x_t \\
+\mu_{2} &= -0.0408 + 0.0103\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0190 + 0.2387\, y_{t-1}^2 + 0.7612\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.3547 & 0.6453 \\ 0.2331 & 0.7669 \end{pmatrix}
+\end{equation}
+LogLik $= 498.56$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= 0.0046 -0.0210\, x_t \\
+\mu_{2} &= 0.0003 -0.0002\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.2237 + 0.0797\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7479 & 0.2521 \\ 0.5042 & 0.4958 \end{pmatrix}
+\end{equation}
+LogLik $= 252.55$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= 0.0000 + 0.1000\, x_t \\
+\mu_{2} &= -0.0000 + 0.1000\, x_t
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1883.37$; Converged: Yes.
+
+\clearpage
+\subsection{Asset: \texttt{EURUSD$=$X}}
+\subsubsection*{Baseline Specification}
+\begin{table}[H]
+\centering\scriptsize
+\caption{EURUSD$=$X --- Baseline Specification}
+\label{tab:eurusdx_baseline}
+\begin{tabular}{lrrrrrrrrrrrrcr}
+\toprule
+\textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
+\midrule
+Gray's & -0.0041 & -0.0005 & -- & -- & 0.0697 & 0.0991 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.7488 & 0.4934 & Yes & 308.28 \\
+Plug-in & -0.0085 & -0.0001 & -- & -- & 0.0086 & 0.0902 & 0.9000 & 0.0001 & 0.0001 & 0.0001 & 0.7669 & 0.4815 & Yes & 399.99 \\
+Quadrature & -0.0044 & -0.0001 & -- & -- & 0.0001 & 0.1158 & 0.8263 & 0.0001 & 0.0001 & 0.0001 & 0.7519 & 0.4557 & Yes & 291.55 \\
+Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1893.04 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
+\end{table}
+
+\medskip
+\noindent\textbf{Fitted Equations (Baseline):}
+\paragraph{Gray's Method}
+\begin{align}
+\mu_{1} &= -0.0041 \\
+\mu_{2} &= -0.0005
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0697 + 0.0991\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7488 & 0.2512 \\ 0.5066 & 0.4934 \end{pmatrix}
+\end{equation}
+LogLik $= 308.28$; Converged: Yes.
+
+\paragraph{Plug-in Method}
+\begin{align}
+\mu_{1} &= -0.0085 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0086 + 0.0902\, y_{t-1}^2 + 0.9000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7669 & 0.2331 \\ 0.5185 & 0.4815 \end{pmatrix}
+\end{equation}
+LogLik $= 399.99$; Converged: Yes.
+
+\paragraph{Quadrature Method}
+\begin{align}
+\mu_{1} &= -0.0044 \\
+\mu_{2} &= -0.0001
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.0001 + 0.1158\, y_{t-1}^2 + 0.8263\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.0001 + 0.0001\, y_{t-1}^2 + 0.0001\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.7519 & 0.2481 \\ 0.5443 & 0.4557 \end{pmatrix}
+\end{equation}
+LogLik $= 291.55$; Converged: Yes.
+
+\paragraph{Particle Filter Method}
+\begin{align}
+\mu_{1} &= -0.0000 \\
+\mu_{2} &= -0.0000
+\end{align}
+\begin{align}
+\sigma^2_{t}(1) &= 0.1000 + 0.1000\, y_{t-1}^2 + 0.7000\, \sigma^2_{t-1} \\
+\sigma^2_{t}(2) &= 0.2000 + 0.2000\, y_{t-1}^2 + 0.6000\, \sigma^2_{t-1}
+\end{align}
+\begin{equation}
+P = \begin{pmatrix} 0.9000 & 0.1000 \\ 0.1000 & 0.9000 \end{pmatrix}
+\end{equation}
+LogLik $= -1893.04$; Converged: Yes.
+
+\clearpage
+\end{document}
