@@ -64,8 +64,9 @@
 \usepackage{enumitem}
 
 % ---- MISC ----
-\usepackage{url}
+\usepackage[hyphens]{url}
 \usepackage{microtype}
+\emergencystretch=3em
 
 % ===========================================================
 %  DOCUMENT START
@@ -354,9 +355,9 @@ All financial data were retrieved from Yahoo Finance via the \texttt{yfinance} P
 
 \section*{Appendix: Repository and Supplementary Materials}
 
-The complete project repository — containing the full model parameter reference document (\texttt{ms\_garch\_full\_models.pdf}, 112 pages), the estimation notebook (\texttt{code/Likelihood\_Approximation\_for\_MS\_GARCH.ipynb}), all CSV results for the 220 experimental cases, and the result visualisations — is publicly available at:
+The complete project repository — containing the full model parameter reference document (\path{ms_garch_full_models.pdf}, 112 pages), the estimation notebook (\path{code/Likelihood_Approximation_for_MS_GARCH.ipynb}), all CSV results for the 220 experimental cases, and the result visualisations — is publicly available at:
 
 \medskip
-\noindent\url{https://github.com/oluwadamilarejoshua/ms-garch-likelihood-approximation}
+{\small\noindent\url{https://github.com/oluwadamilarejoshua/ms-garch-likelihood-approximation}}
 
 \end{document}
