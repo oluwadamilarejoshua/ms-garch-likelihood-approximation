@@ -1,4 +1,4 @@
-% ============================================================
+﻿% ============================================================
 %  MS-GARCH Full Model Parameter Reference
 %  All 220 estimated models: parameter tables and equations
 % ============================================================
@@ -10,6 +10,7 @@
 \usepackage{amsmath, amssymb}
 \usepackage{array, booktabs, longtable}
 \usepackage{float}
+\usepackage{graphicx}
 \usepackage{caption}
 \captionsetup{font=small, labelfont=bf}
 \usepackage{setspace}
@@ -68,7 +69,7 @@ where $\gamma_1 = \gamma_2 = 0$ by construction.
 \centering\scriptsize
 \caption{FTSE --- Baseline Specification}
 \label{tab:ftse_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -77,7 +78,7 @@ Plug-in & -0.0003 & 0.0355 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1062 & 0.298
 Quadrature & 0.0517 & -0.0001 & -- & -- & 0.2244 & 0.3836 & 0.6159 & 0.0001 & 0.0001 & 0.0001 & 0.7258 & 0.4785 & Yes & -1044.07 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3030.64 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -145,7 +146,7 @@ LogLik $= -3030.64$; Converged: Yes.
 \centering\scriptsize
 \caption{FTSE --- Exogenous Specification}
 \label{tab:ftse_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -154,7 +155,7 @@ Plug-in & -0.0001 & 0.0219 & 0.0006 & 0.1418 & 0.0001 & 0.0001 & 0.0001 & 0.1021
 Quadrature & 0.0917 & -0.0001 & 0.1461 & -0.0000 & 0.1861 & 0.3089 & 0.6911 & 0.0001 & 0.0001 & 0.0001 & 0.7506 & 0.4853 & Yes & -1012.80 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -3006.88 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -224,7 +225,7 @@ LogLik $= -3006.88$; Converged: No.
 \centering\scriptsize
 \caption{N225 --- Baseline Specification}
 \label{tab:n225_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -233,7 +234,7 @@ Plug-in & -0.0002 & 0.0666 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1062 & 0.138
 Quadrature & 0.1001 & 0.0003 & -- & -- & 0.6615 & 0.2244 & 0.7755 & 0.0001 & 0.0001 & 0.0001 & 0.6441 & 0.6348 & Yes & -1617.53 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3946.35 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -301,7 +302,7 @@ LogLik $= -3946.35$; Converged: Yes.
 \centering\scriptsize
 \caption{N225 --- Exogenous Specification}
 \label{tab:n225_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -310,7 +311,7 @@ Plug-in & 0.0257 & -0.0001 & 0.6279 & -0.0002 & 0.1280 & 0.1767 & 0.7711 & 0.000
 Quadrature & 0.0163 & -0.0003 & 0.6281 & 0.0001 & 0.2268 & 0.1732 & 0.8266 & 0.0001 & 0.0001 & 0.0001 & 0.7203 & 0.4536 & Yes & -1282.22 \\
 Particle Filter & -0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3844.16 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -380,7 +381,7 @@ LogLik $= -3844.16$; Converged: Yes.
 \centering\scriptsize
 \caption{IXIC --- Baseline Specification}
 \label{tab:ixic_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -389,7 +390,7 @@ Plug-in & 0.0001 & 0.1090 & -- & -- & 0.0001 & 0.0001 & 0.0004 & 0.1851 & 0.2735
 Quadrature & 0.0232 & 0.1347 & -- & -- & 0.2404 & 0.1729 & 0.8240 & 0.0135 & 0.0737 & 0.6214 & 0.8661 & 0.8884 & No & -4186.05 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -4274.18 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -457,7 +458,7 @@ LogLik $= -4274.18$; Converged: No.
 \centering\scriptsize
 \caption{IXIC --- Exogenous Specification}
 \label{tab:ixic_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -466,7 +467,7 @@ Plug-in & 0.0001 & 0.0711 & -0.0013 & -0.1073 & 0.0001 & 0.0001 & 0.0004 & 0.196
 Quadrature & 0.1181 & 0.0718 & -0.2952 & -0.0036 & 0.5152 & 0.2517 & 0.7483 & 0.0871 & 0.1286 & 0.3366 & 0.8120 & 0.8530 & Yes & -4192.55 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -4279.14 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -536,7 +537,7 @@ LogLik $= -4279.14$; Converged: Yes.
 \centering\scriptsize
 \caption{EEM --- Baseline Specification}
 \label{tab:eem_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -545,7 +546,7 @@ Plug-in & 0.0353 & -0.0000 & -- & -- & 0.0657 & 0.1191 & 0.8789 & 0.0001 & 0.000
 Quadrature & 0.0501 & 0.0001 & -- & -- & 0.3670 & 0.1404 & 0.8589 & 0.0001 & 0.0001 & 0.0001 & 0.7578 & 0.4318 & Yes & -1804.79 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3993.87 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -613,7 +614,7 @@ LogLik $= -3993.87$; Converged: Yes.
 \centering\scriptsize
 \caption{EEM --- Exogenous Specification}
 \label{tab:eem_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -622,7 +623,7 @@ Plug-in & -0.0000 & 0.0350 & -0.0001 & -0.0749 & 0.0001 & 0.0001 & 0.0001 & 0.06
 Quadrature & -0.1344 & 0.0001 & -0.2235 & -0.0039 & 0.8549 & 0.6400 & 0.3581 & 0.0001 & 0.1089 & 0.0001 & 0.5021 & 0.4844 & Yes & -2441.71 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -4011.86 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -692,7 +693,7 @@ LogLik $= -4011.86$; Converged: Yes.
 \centering\scriptsize
 \caption{VTV --- Baseline Specification}
 \label{tab:vtv_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -701,7 +702,7 @@ Plug-in & 0.0724 & -0.0000 & -- & -- & 0.1410 & 0.3708 & 0.6292 & 0.0001 & 0.000
 Quadrature & 0.0630 & -0.0003 & -- & -- & 0.2014 & 0.3257 & 0.6729 & 0.0001 & 0.0001 & 0.0001 & 0.7729 & 0.4669 & Yes & -1161.13 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -3185.81 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -769,7 +770,7 @@ LogLik $= -3185.81$; Converged: No.
 \centering\scriptsize
 \caption{VTV --- Exogenous Specification}
 \label{tab:vtv_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -778,7 +779,7 @@ Plug-in & -0.0001 & 0.0459 & -0.0005 & -0.0119 & 0.0001 & 0.0001 & 0.0005 & 0.14
 Quadrature & 0.0734 & -0.0000 & -0.0054 & -0.0003 & 0.2588 & 0.3504 & 0.6496 & 0.0001 & 0.0001 & 0.0001 & 0.7387 & 0.4614 & Yes & -1164.80 \\
 Particle Filter & -0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3197.38 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^GSPC}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -848,7 +849,7 @@ LogLik $= -3197.38$; Converged: Yes.
 \centering\scriptsize
 \caption{GSPC --- Baseline Specification}
 \label{tab:gspc_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -857,7 +858,7 @@ Plug-in & -0.0001 & 0.0739 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1646 & 0.309
 Quadrature & 0.0765 & -0.0002 & -- & -- & 0.3227 & 0.3107 & 0.6891 & 0.0001 & 0.0001 & 0.0001 & 0.7184 & 0.4804 & No & -1414.35 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3516.35 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -930,7 +931,7 @@ LogLik $= -3516.35$; Converged: Yes.
 \centering\scriptsize
 \caption{IEI --- Baseline Specification}
 \label{tab:iei_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -939,7 +940,7 @@ Plug-in & 0.0129 & -0.0000 & -- & -- & 0.0017 & 0.1031 & 0.8969 & 0.0001 & 0.000
 Quadrature & 0.0006 & 0.0001 & -- & -- & 0.0001 & 0.2845 & 0.5719 & 0.0001 & 0.0001 & 0.0001 & 0.7160 & 0.4853 & Yes & 1892.71 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1455.01 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1007,7 +1008,7 @@ LogLik $= -1455.01$; Converged: Yes.
 \centering\scriptsize
 \caption{IEI --- Exogenous Specification}
 \label{tab:iei_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1016,7 +1017,7 @@ Plug-in & 0.0002 & -0.0085 & 0.0002 & -0.0026 & 0.0001 & 0.0001 & 0.0001 & 0.008
 Quadrature & 0.0005 & 0.0001 & 0.0022 & 0.0001 & 0.0001 & 0.2840 & 0.5712 & 0.0001 & 0.0001 & 0.0001 & 0.7167 & 0.4850 & Yes & 1893.21 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1693.27 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1086,7 +1087,7 @@ LogLik $= -1693.27$; Converged: No.
 \centering\scriptsize
 \caption{TLT --- Baseline Specification}
 \label{tab:tlt_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1095,7 +1096,7 @@ Plug-in & -0.0082 & -0.0001 & -- & -- & 0.0678 & 0.1965 & 0.8035 & 0.0001 & 0.00
 Quadrature & -0.0001 & -0.0503 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.1621 & 0.1985 & 0.7949 & 0.4683 & 0.7582 & Yes & -1200.19 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3249.52 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1163,7 +1164,7 @@ LogLik $= -3249.52$; Converged: Yes.
 \centering\scriptsize
 \caption{TLT --- Exogenous Specification}
 \label{tab:tlt_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1172,7 +1173,7 @@ Plug-in & 0.0405 & -0.0005 & 0.0136 & 0.0001 & 0.0405 & 0.1273 & 0.8727 & 0.0001
 Quadrature & -0.0285 & -0.0003 & 0.0059 & 0.0000 & 0.1776 & 0.1736 & 0.8243 & 0.0001 & 0.0001 & 0.0001 & 0.7407 & 0.4673 & Yes & -1193.51 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3339.23 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1242,7 +1243,7 @@ LogLik $= -3339.23$; Converged: Yes.
 \centering\scriptsize
 \caption{BNDX --- Baseline Specification}
 \label{tab:bndx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1251,7 +1252,7 @@ Plug-in & 0.0005 & 0.0082 & -- & -- & 0.0001 & 0.0001 & 0.0020 & 0.0076 & 0.3010
 Quadrature & 0.0071 & 0.0004 & -- & -- & 0.0001 & 0.3053 & 0.5660 & 0.0001 & 0.0001 & 0.0001 & 0.7077 & 0.4657 & Yes & 1864.15 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1463.24 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1319,7 +1320,7 @@ LogLik $= -1463.24$; Converged: No.
 \centering\scriptsize
 \caption{BNDX --- Exogenous Specification}
 \label{tab:bndx_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1328,7 +1329,7 @@ Plug-in & 0.0004 & 0.0098 & 0.0001 & -0.0050 & 0.0001 & 0.0001 & 0.0012 & 0.0103
 Quadrature & 0.0082 & 0.0004 & -0.0099 & 0.0001 & 0.0001 & 0.2883 & 0.5664 & 0.0001 & 0.0001 & 0.0001 & 0.7055 & 0.4650 & Yes & 1871.45 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1707.50 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1398,7 +1399,7 @@ LogLik $= -1707.50$; Converged: No.
 \centering\scriptsize
 \caption{LQD --- Baseline Specification}
 \label{tab:lqd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1407,7 +1408,7 @@ Plug-in & -0.0000 & 0.0325 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0295 & 0.294
 Quadrature & 0.0243 & -0.0003 & -- & -- & 0.0180 & 0.2731 & 0.7269 & 0.0001 & 0.0001 & 0.0001 & 0.7045 & 0.4639 & Yes & 293.74 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1996.75 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1475,7 +1476,7 @@ LogLik $= -1996.75$; Converged: No.
 \centering\scriptsize
 \caption{LQD --- Exogenous Specification}
 \label{tab:lqd_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1484,7 +1485,7 @@ Plug-in & 0.0153 & 0.0001 & 0.0110 & -0.0002 & 0.0286 & 0.3169 & 0.6831 & 0.0001
 Quadrature & 0.0475 & 0.0000 & 0.0230 & -0.0001 & 0.0231 & 0.3555 & 0.6445 & 0.0001 & 0.0001 & 0.0001 & 0.7441 & 0.3965 & Yes & 275.63 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -2165.86 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1554,7 +1555,7 @@ LogLik $= -2165.86$; Converged: No.
 \centering\scriptsize
 \caption{HYG --- Baseline Specification}
 \label{tab:hyg_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1563,7 +1564,7 @@ Plug-in & 0.0015 & 0.0408 & -- & -- & 0.0001 & 0.0001 & 0.2165 & 0.0300 & 0.3273
 Quadrature & -0.0001 & 0.0526 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0272 & 0.5074 & 0.4926 & 0.4019 & 0.7372 & Yes & 579.36 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1889.53 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1631,7 +1632,7 @@ LogLik $= -1889.53$; Converged: Yes.
 \centering\scriptsize
 \caption{HYG --- Exogenous Specification}
 \label{tab:hyg_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1640,7 +1641,7 @@ Plug-in & 0.0201 & -0.0001 & -0.0124 & -0.0000 & 0.0274 & 0.4540 & 0.5460 & 0.00
 Quadrature & 0.0320 & -0.0001 & -0.0110 & 0.0000 & 0.0350 & 0.3466 & 0.6534 & 0.0001 & 0.4030 & 0.0001 & 0.4341 & 0.4188 & Yes & 260.54 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2060.93 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{^TNX}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1710,7 +1711,7 @@ LogLik $= -2060.93$; Converged: Yes.
 \centering\scriptsize
 \caption{TNX --- Baseline Specification}
 \label{tab:tnx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1719,7 +1720,7 @@ Plug-in & 0.0895 & 0.1516 & -- & -- & 0.1531 & 0.1622 & 0.8344 & 0.2504 & 0.2472
 Quadrature & -0.1040 & 0.0193 & -- & -- & 0.3746 & 0.0622 & 0.7342 & 0.0237 & 0.0999 & 0.9000 & 0.7449 & 0.9900 & Yes & -5708.41 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -5821.83 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1792,7 +1793,7 @@ LogLik $= -5821.83$; Converged: Yes.
 \centering\scriptsize
 \caption{ETH-USD --- Baseline Specification}
 \label{tab:ethusd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1801,7 +1802,7 @@ Plug-in & 0.3134 & 0.1208 & -- & -- & 0.4091 & 0.1081 & 0.8919 & 0.2186 & 0.1249
 Quadrature & 0.4393 & -0.4404 & -- & -- & 0.4501 & 0.1080 & 0.8919 & 0.2665 & 0.1473 & 0.7954 & 0.9554 & 0.7309 & Yes & -8120.74 \\
 Particle Filter & 0.0000 & -0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -9075.70 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1869,7 +1870,7 @@ LogLik $= -9075.70$; Converged: Yes.
 \centering\scriptsize
 \caption{ETH-USD --- Exogenous Specification}
 \label{tab:ethusd_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1878,7 +1879,7 @@ Plug-in & 0.5905 & 0.5930 & -0.6630 & 0.7643 & 0.6762 & 0.2424 & 0.6657 & 0.5989
 Quadrature & 0.2852 & -0.3721 & -0.0624 & 0.4278 & 0.4565 & 0.0608 & 0.9000 & 0.2452 & 0.1417 & 0.8569 & 0.9653 & 0.7370 & Yes & -8072.25 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -9071.62 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -1948,7 +1949,7 @@ LogLik $= -9071.62$; Converged: Yes.
 \centering\scriptsize
 \caption{LTC-USD --- Baseline Specification}
 \label{tab:ltcusd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -1957,7 +1958,7 @@ Plug-in & -0.0339 & 0.1039 & -- & -- & 0.4205 & 0.1101 & 0.8898 & 0.2297 & 0.131
 Quadrature & 0.4244 & -0.3186 & -- & -- & 0.4449 & 0.1151 & 0.8848 & 0.2611 & 0.1455 & 0.7943 & 0.9563 & 0.7327 & No & -8317.06 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -9342.67 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2025,7 +2026,7 @@ LogLik $= -9342.67$; Converged: No.
 \centering\scriptsize
 \caption{LTC-USD --- Exogenous Specification}
 \label{tab:ltcusd_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2034,7 +2035,7 @@ Plug-in & -0.6148 & 0.6157 & -0.5239 & 0.6990 & 0.3360 & 0.2033 & 0.7488 & 0.423
 Quadrature & 0.1923 & -0.1625 & -0.1149 & 0.2713 & 0.4130 & 0.0865 & 0.9000 & 0.1897 & 0.1409 & 0.8585 & 0.9807 & 0.7488 & Yes & -8291.69 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -9342.78 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2104,7 +2105,7 @@ LogLik $= -9342.78$; Converged: No.
 \centering\scriptsize
 \caption{XRP-USD --- Baseline Specification}
 \label{tab:xrpusd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2113,7 +2114,7 @@ Plug-in & 0.4248 & -0.4242 & -- & -- & 0.4469 & 0.1223 & 0.8774 & 0.2607 & 0.142
 Quadrature & 1.4539 & -1.4449 & -- & -- & 0.8731 & 0.1863 & 0.8134 & 0.6844 & 0.3883 & 0.5541 & 0.7274 & 0.7523 & No & -8514.52 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10373.34 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2181,7 +2182,7 @@ LogLik $= -10373.34$; Converged: Yes.
 \centering\scriptsize
 \caption{XRP-USD --- Exogenous Specification}
 \label{tab:xrpusd_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2190,7 +2191,7 @@ Plug-in & 0.4094 & -0.4084 & -0.3651 & -0.3614 & 0.4399 & 0.1168 & 0.8829 & 0.25
 Quadrature & 0.5024 & -0.5475 & -0.2190 & 0.3982 & 0.5735 & 0.0455 & 0.9000 & 0.3131 & 0.2130 & 0.7869 & 0.9438 & 0.7205 & Yes & -8507.94 \\
 Particle Filter & 0.0032 & 0.0032 & 0.0532 & 0.0467 & 0.3011 & 0.0505 & 0.8500 & 0.0999 & 0.0799 & 0.7801 & 0.9500 & 0.8001 & Yes & -10360.16 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2260,7 +2261,7 @@ LogLik $= -10360.16$; Converged: Yes.
 \centering\scriptsize
 \caption{DOGE-USD --- Baseline Specification}
 \label{tab:dogeusd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2269,7 +2270,7 @@ Plug-in & 0.2567 & -0.2505 & -- & -- & 0.3865 & 0.1072 & 0.8928 & 0.1955 & 0.108
 Quadrature & 0.7571 & 0.7576 & -- & -- & 0.3856 & 0.2121 & 0.7378 & 0.4723 & 0.3139 & 0.6809 & 0.7704 & 0.9076 & No & -9069.31 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -10260.15 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2337,7 +2338,7 @@ LogLik $= -10260.15$; Converged: No.
 \centering\scriptsize
 \caption{DOGE-USD --- Exogenous Specification}
 \label{tab:dogeusd_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2346,7 +2347,7 @@ Plug-in & -0.6670 & 0.6699 & -0.5781 & 0.7548 & 0.3549 & 0.2127 & 0.7381 & 0.437
 Quadrature & 0.3266 & 0.1761 & -0.2776 & 0.3775 & 0.4121 & 0.1128 & 0.8872 & 0.2246 & 0.1395 & 0.7981 & 0.9400 & 0.7511 & Yes & -8741.70 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10266.08 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2416,7 +2417,7 @@ LogLik $= -10266.08$; Converged: Yes.
 \centering\scriptsize
 \caption{NMC-USD --- Baseline Specification}
 \label{tab:nmcusd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2425,7 +2426,7 @@ Plug-in & -0.3969 & 0.7938 & -- & -- & 0.4041 & 0.2430 & 0.7560 & 0.4814 & 0.294
 Quadrature & 0.3394 & 0.3397 & -- & -- & 0.4165 & 0.1107 & 0.8879 & 0.2289 & 0.1276 & 0.7921 & 0.9659 & 0.7444 & No & -9121.91 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10525.65 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2493,7 +2494,7 @@ LogLik $= -10525.65$; Converged: Yes.
 \centering\scriptsize
 \caption{NMC-USD --- Exogenous Specification}
 \label{tab:nmcusd_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2502,7 +2503,7 @@ Plug-in & 0.2801 & 0.3165 & 0.3636 & -0.2702 & 0.4081 & 0.1090 & 0.8907 & 0.2200
 Quadrature & 0.1893 & -0.2462 & -0.2546 & 0.9347 & 0.7896 & 0.1000 & 0.9000 & 0.4749 & 0.3541 & 0.3659 & 0.9724 & 0.7735 & Yes & -8987.10 \\
 Particle Filter & 0.0000 & -0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -10527.21 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC-USD}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2572,7 +2573,7 @@ LogLik $= -10527.21$; Converged: Yes.
 \centering\scriptsize
 \caption{BTC-USD --- Baseline Specification}
 \label{tab:btcusd_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2581,7 +2582,7 @@ Plug-in & 0.2967 & 0.2183 & -- & -- & 0.4060 & 0.1119 & 0.8874 & 0.0915 & 0.1184
 Quadrature & 0.3018 & 0.0777 & -- & -- & 0.8128 & 0.0262 & 0.9000 & 0.3007 & 0.3465 & 0.6485 & 0.8635 & 0.7211 & No & -7297.61 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -7853.80 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2654,7 +2655,7 @@ LogLik $= -7853.80$; Converged: Yes.
 \centering\scriptsize
 \caption{ES$=$F --- Baseline Specification}
 \label{tab:esf_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2663,7 +2664,7 @@ Plug-in & 0.0393 & 0.0001 & -- & -- & 0.0990 & 0.2335 & 0.7656 & 0.0001 & 0.0001
 Quadrature & -0.0299 & -0.0005 & -- & -- & 0.3765 & 0.2055 & 0.7937 & 0.0001 & 0.0901 & 0.0001 & 0.6221 & 0.4310 & No & -2011.93 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3564.02 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2731,7 +2732,7 @@ LogLik $= -3564.02$; Converged: Yes.
 \centering\scriptsize
 \caption{ES$=$F --- Exogenous Specification}
 \label{tab:esf_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2740,7 +2741,7 @@ Plug-in & -0.0002 & 0.0630 & -0.0001 & -0.0035 & 0.0001 & 0.0001 & 0.0001 & 0.09
 Quadrature & 0.0204 & 0.0655 & -0.0030 & 0.0038 & 0.6408 & 0.2333 & 0.7666 & 0.0001 & 0.0776 & 0.1548 & 0.7089 & 0.7513 & No & -3291.80 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -3789.14 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2810,7 +2811,7 @@ LogLik $= -3789.14$; Converged: No.
 \centering\scriptsize
 \caption{NQ$=$F --- Baseline Specification}
 \label{tab:nqf_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2819,7 +2820,7 @@ Plug-in & -0.0002 & 0.1257 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.2100 & 0.244
 Quadrature & -0.2432 & 0.0004 & -- & -- & 0.9614 & 0.1800 & 0.8192 & 0.0352 & 0.0909 & 0.1859 & 0.5977 & 0.7402 & No & -4142.41 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -4346.95 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2887,7 +2888,7 @@ LogLik $= -4346.95$; Converged: Yes.
 \centering\scriptsize
 \caption{NQ$=$F --- Exogenous Specification}
 \label{tab:nqf_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2896,7 +2897,7 @@ Plug-in & -0.0001 & 0.0957 & -0.0003 & 0.0051 & 0.0001 & 0.0001 & 0.0001 & 0.245
 Quadrature & 0.0603 & 0.1124 & -0.0230 & 0.0022 & 0.2318 & 0.1811 & 0.8172 & 0.0001 & 0.1069 & 0.6669 & 0.8376 & 0.8715 & No & -4300.29 \\
 Particle Filter & -0.0000 & -0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -4390.33 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -2966,7 +2967,7 @@ LogLik $= -4390.33$; Converged: Yes.
 \centering\scriptsize
 \caption{VIX --- Baseline Specification}
 \label{tab:vix_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -2975,7 +2976,7 @@ Plug-in & 0.3015 & -0.3016 & -- & -- & 0.4032 & 0.1087 & 0.8894 & 0.2142 & 0.118
 Quadrature & 0.3551 & 0.2797 & -- & -- & 0.4243 & 0.1126 & 0.8873 & 0.2380 & 0.1332 & 0.7932 & 0.9657 & 0.7407 & No & -9364.19 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -11098.09 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3043,7 +3044,7 @@ LogLik $= -11098.09$; Converged: Yes.
 \centering\scriptsize
 \caption{VIX --- Exogenous Specification}
 \label{tab:vix_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3052,7 +3053,7 @@ Plug-in & 0.4222 & -0.4223 & 0.4677 & -0.3767 & 0.4437 & 0.1220 & 0.8776 & 0.260
 Quadrature & 0.7128 & 0.7112 & -0.7926 & 0.8766 & 0.7166 & 0.2768 & 0.7224 & 0.6291 & 0.3050 & 0.6538 & 0.7899 & 0.8031 & No & -9503.13 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -11097.16 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3122,7 +3123,7 @@ LogLik $= -11097.16$; Converged: Yes.
 \centering\scriptsize
 \caption{GC$=$F --- Baseline Specification}
 \label{tab:gcf_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3131,7 +3132,7 @@ Plug-in & 0.0357 & 0.0001 & -- & -- & 0.0416 & 0.0848 & 0.9000 & 0.0001 & 0.0001
 Quadrature & 0.0497 & 0.0002 & -- & -- & 0.8321 & 0.0493 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7491 & 0.5464 & Yes & -1130.01 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3267.32 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3199,7 +3200,7 @@ LogLik $= -3267.32$; Converged: Yes.
 \centering\scriptsize
 \caption{GC$=$F --- Exogenous Specification}
 \label{tab:gcf_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3208,7 +3209,7 @@ Plug-in & 0.0356 & 0.0001 & -0.0023 & -0.0000 & 0.0415 & 0.0850 & 0.9000 & 0.000
 Quadrature & 0.0479 & 0.0003 & -0.0010 & 0.0002 & 0.8316 & 0.0497 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7491 & 0.5468 & Yes & -1129.58 \\
 Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -3551.41 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3278,7 +3279,7 @@ LogLik $= -3551.41$; Converged: Yes.
 \centering\scriptsize
 \caption{CL$=$F --- Baseline Specification}
 \label{tab:clf_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3287,7 +3288,7 @@ Plug-in & -0.0540 & 0.0125 & -- & -- & 0.5635 & 0.1940 & 0.8059 & 0.3725 & 0.206
 Quadrature & 0.0587 & 0.0703 & -- & -- & 0.0846 & 0.0764 & 0.9000 & 0.2353 & 0.2164 & 0.7820 & 0.9900 & 0.8262 & Yes & -5819.91 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & Yes & -5874.11 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3355,7 +3356,7 @@ LogLik $= -5874.11$; Converged: Yes.
 \centering\scriptsize
 \caption{CL$=$F --- Exogenous Specification}
 \label{tab:clf_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3364,7 +3365,7 @@ Plug-in & 0.0656 & 0.0005 & 0.0761 & 0.0005 & 0.2946 & 0.1629 & 0.8371 & 0.0001 
 Quadrature & 0.0781 & 0.1144 & 0.0027 & -0.0241 & 0.1253 & 0.0606 & 0.9000 & 0.2606 & 0.2353 & 0.7647 & 0.9884 & 0.8334 & Yes & -5823.02 \\
 Particle Filter & 0.0000 & 0.0000 & 0.0500 & 0.0500 & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -5884.73 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{BTC=F}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3434,7 +3435,7 @@ LogLik $= -5884.73$; Converged: No.
 \centering\scriptsize
 \caption{BTC$=$F --- Baseline Specification}
 \label{tab:btcf_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3443,7 +3444,7 @@ Plug-in & 0.7002 & 0.6944 & -- & -- & 0.7114 & 0.2689 & 0.7137 & 0.6196 & 0.2778
 Quadrature & 0.4257 & -0.1560 & -- & -- & 0.6956 & 0.0037 & 0.9000 & 0.5464 & 0.1097 & 0.8836 & 0.8764 & 0.8495 & Yes & -7441.91 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.3000 & 0.0500 & 0.8500 & 0.1000 & 0.0800 & 0.7800 & 0.9500 & 0.8000 & No & -8163.70 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3516,7 +3517,7 @@ LogLik $= -8163.70$; Converged: No.
 \centering\scriptsize
 \caption{GBPUSD$=$X --- Baseline Specification}
 \label{tab:gbpusdx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3525,7 +3526,7 @@ Plug-in & -0.0015 & -0.0001 & -- & -- & 0.0120 & 0.0905 & 0.9000 & 0.0001 & 0.00
 Quadrature & -0.0079 & -0.0002 & -- & -- & 0.0001 & 0.1098 & 0.8891 & 0.0001 & 0.0001 & 0.0001 & 0.7627 & 0.4483 & Yes & -76.25 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2116.49 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3593,7 +3594,7 @@ LogLik $= -2116.49$; Converged: Yes.
 \centering\scriptsize
 \caption{GBPUSD$=$X --- Exogenous Specification}
 \label{tab:gbpusdx_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3602,7 +3603,7 @@ Plug-in & -0.0015 & -0.0001 & 0.0086 & 0.0005 & 0.0120 & 0.0905 & 0.9000 & 0.000
 Quadrature & 0.0014 & 0.0001 & 0.0177 & 0.0007 & 0.0189 & 0.2002 & 0.7965 & 0.0001 & 0.0001 & 0.0001 & 0.7483 & 0.4411 & Yes & -78.17 \\
 Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2120.49 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3672,7 +3673,7 @@ LogLik $= -2120.49$; Converged: Yes.
 \centering\scriptsize
 \caption{JPY$=$X --- Baseline Specification}
 \label{tab:jpyx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3681,7 +3682,7 @@ Plug-in & -0.0002 & 0.0195 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0362 & 0.305
 Quadrature & 0.0234 & 0.0004 & -- & -- & 0.0010 & 0.2142 & 0.7854 & 0.0001 & 0.0001 & 0.0001 & 0.7634 & 0.3640 & Yes & -78.14 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -2108.91 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3749,7 +3750,7 @@ LogLik $= -2108.91$; Converged: No.
 \centering\scriptsize
 \caption{JPY$=$X --- Exogenous Specification}
 \label{tab:jpyx_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3758,7 +3759,7 @@ Plug-in & 0.0001 & 0.0682 & 0.0024 & -0.0378 & 0.0001 & 0.0001 & 0.0001 & 0.0358
 Quadrature & 0.0000 & 0.0095 & 0.0014 & -0.1335 & 0.0001 & 0.0001 & 0.0001 & 0.0085 & 0.1774 & 0.8223 & 0.4331 & 0.7419 & No & -74.43 \\
 Particle Filter & 0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -2116.35 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3828,7 +3829,7 @@ LogLik $= -2116.35$; Converged: No.
 \centering\scriptsize
 \caption{AUDUSD$=$X --- Baseline Specification}
 \label{tab:audusdx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3837,7 +3838,7 @@ Plug-in & -0.0000 & -0.0158 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.0174 & 0.08
 Quadrature & -0.0126 & 0.0003 & -- & -- & 0.0350 & 0.1698 & 0.8276 & 0.0001 & 0.0001 & 0.0001 & 0.7515 & 0.4062 & Yes & -540.09 \\
 Particle Filter & 0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2384.22 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3905,7 +3906,7 @@ LogLik $= -2384.22$; Converged: Yes.
 \centering\scriptsize
 \caption{AUDUSD$=$X --- Exogenous Specification}
 \label{tab:audusdx_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3914,7 +3915,7 @@ Plug-in & -0.0163 & -0.0000 & -0.0526 & -0.0007 & 0.0173 & 0.0869 & 0.9000 & 0.0
 Quadrature & -0.0015 & 0.0000 & -0.0135 & -0.0012 & 0.0226 & 0.1004 & 0.8987 & 0.0001 & 0.0001 & 0.0001 & 0.7533 & 0.4427 & Yes & -532.90 \\
 Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -2390.26 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -3984,7 +3985,7 @@ LogLik $= -2390.26$; Converged: Yes.
 \centering\scriptsize
 \caption{CHF$=$X --- Baseline Specification}
 \label{tab:chfx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -3993,7 +3994,7 @@ Plug-in & -0.0005 & 0.0002 & -- & -- & 0.0244 & 0.1622 & 0.7876 & 0.0001 & 0.000
 Quadrature & 0.0008 & 0.0002 & -- & -- & 0.0001 & 0.1670 & 0.8114 & 0.0001 & 0.0001 & 0.0001 & 0.7539 & 0.4700 & Yes & 286.83 \\
 Particle Filter & 0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & No & -1913.41 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -4061,7 +4062,7 @@ LogLik $= -1913.41$; Converged: No.
 \centering\scriptsize
 \caption{CHF$=$X --- Exogenous Specification}
 \label{tab:chfx_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -4070,7 +4071,7 @@ Plug-in & 0.0002 & -0.0005 & 0.0004 & -0.0164 & 0.0001 & 0.0001 & 0.0001 & 0.024
 Quadrature & 0.0002 & 0.0006 & 0.0006 & -0.0223 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.1667 & 0.8117 & 0.4697 & 0.7537 & Yes & 287.22 \\
 Particle Filter & -0.0000 & 0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1921.41 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -4140,7 +4141,7 @@ LogLik $= -1921.41$; Converged: Yes.
 \centering\scriptsize
 \caption{EURGBP$=$X --- Baseline Specification}
 \label{tab:eurgbpx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -4149,7 +4150,7 @@ Plug-in & 0.0114 & 0.0002 & -- & -- & 0.0057 & 0.1000 & 0.9000 & 0.0001 & 0.0001
 Quadrature & 0.0003 & 0.0044 & -- & -- & 0.0001 & 0.0001 & 0.0001 & 0.2239 & 0.0797 & 0.0001 & 0.4959 & 0.7477 & Yes & 252.26 \\
 Particle Filter & -0.0000 & 0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1878.74 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -4217,7 +4218,7 @@ LogLik $= -1878.74$; Converged: Yes.
 \centering\scriptsize
 \caption{EURGBP$=$X --- Exogenous Specification}
 \label{tab:eurgbpx_exogenous}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -4226,7 +4227,7 @@ Plug-in & 0.0003 & -0.0408 & -0.0009 & 0.0103 & 0.0001 & 0.0001 & 0.0001 & 0.019
 Quadrature & 0.0046 & 0.0003 & -0.0210 & -0.0002 & 0.2237 & 0.0797 & 0.0001 & 0.0001 & 0.0001 & 0.0001 & 0.7479 & 0.4958 & Yes & 252.55 \\
 Particle Filter & 0.0000 & -0.0000 & 0.1000 & 0.1000 & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1883.37 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Exogenous spec; pivot = \texttt{EURUSD=X}. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
@@ -4296,7 +4297,7 @@ LogLik $= -1883.37$; Converged: Yes.
 \centering\scriptsize
 \caption{EURUSD$=$X --- Baseline Specification}
 \label{tab:eurusdx_baseline}
-\begin{tabular}{lrrrrrrrrrrrrcr}
+\resizebox{\linewidth}{!}{\begin{tabular}{lrrrrrrrrrrrrcr}
 \toprule
 \textbf{Method} & $c_1$ & $c_2$ & $\gamma_1$ & $\gamma_2$ & $\omega_1$ & $\alpha_1$ & $\beta_1$ & $\omega_2$ & $\alpha_2$ & $\beta_2$ & $p_{11}$ & $p_{22}$ & Conv. & LogLik \\
 \midrule
@@ -4305,7 +4306,7 @@ Plug-in & -0.0085 & -0.0001 & -- & -- & 0.0086 & 0.0902 & 0.9000 & 0.0001 & 0.00
 Quadrature & -0.0044 & -0.0001 & -- & -- & 0.0001 & 0.1158 & 0.8263 & 0.0001 & 0.0001 & 0.0001 & 0.7519 & 0.4557 & Yes & 291.55 \\
 Particle Filter & -0.0000 & -0.0000 & -- & -- & 0.1000 & 0.1000 & 0.7000 & 0.2000 & 0.2000 & 0.6000 & 0.9000 & 0.9000 & Yes & -1893.04 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \smallskip
 \begin{flushleft}\scriptsize Baseline spec: $\gamma_1 = \gamma_2 = 0$. Conv.\,=\,convergence status.\end{flushleft}
 \end{table}
