@@ -14,7 +14,7 @@ ms_garch_article/
 ├── full_models/                         ← Complete model parameter reference
 │   ├── ms_garch_full_models.tex         ← LaTeX source
 │   ├── ms_garch_full_models.pdf         ← Compiled PDF (all 220 models)
-│   └── generate_full_models.py          ← Script used to generate the LaTeX
+│   └── references.bib                   ← Bibliography
 │
 ├── results/                             ← CSV data files
 │   ├── comprehensive_results_220.csv    ← Master results (all 220 cases)
